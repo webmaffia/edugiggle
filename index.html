@@ -102,13 +102,27 @@
 </div>
 <!-- Mobile menu button -->
 <div class="md:hidden flex items-center">
-<button class="text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary p-2">
-<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<button aria-controls="mobileMenu" aria-expanded="false" class="text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary p-2" id="mobileMenuButton">
+<svg class="h-6 w-6" fill="none" id="mobileMenuIconOpen" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<svg class="h-6 w-6 hidden" fill="none" id="mobileMenuIconClose" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
 </div>
 </div>
+</div>
+<!-- Mobile Navigation Panel -->
+<div class="md:hidden hidden border-t border-gray-100 bg-white" id="mobileMenu">
+<nav class="flex flex-col px-4 sm:px-6 py-4 space-y-1">
+<a class="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors" href="#">Counselling</a>
+<a class="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors" href="#">Courses</a>
+<a class="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors" href="#">Events &amp; Webinars</a>
+<a class="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors" href="#">Resources</a>
+<a class="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors" href="#">About Us</a>
+<a class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-semibold rounded-lg text-white bg-primary hover:bg-opacity-90 shadow-sm transition-all mt-2" href="#">Book Free Consultation</a>
+</nav>
 </div>
 </header>
 <!-- END: Header -->
@@ -933,6 +947,30 @@
       setTimeout(openModal, 3000);
       closeBtn.addEventListener('click', closeModal);
       overlay.addEventListener('click', closeModal);
+    })();
+
+    (function () {
+      var menuButton = document.getElementById('mobileMenuButton');
+      var menu = document.getElementById('mobileMenu');
+      var iconOpen = document.getElementById('mobileMenuIconOpen');
+      var iconClose = document.getElementById('mobileMenuIconClose');
+
+      menuButton.addEventListener('click', function () {
+        var isHidden = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        iconOpen.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+        menuButton.setAttribute('aria-expanded', String(isHidden));
+      });
+
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+          menuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
     })();
   </script>
 </body></html>
