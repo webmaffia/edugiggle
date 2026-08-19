@@ -87,7 +87,7 @@
 </nav>
 <!-- CTA Button -->
 <div class="hidden md:flex items-center">
-<a class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-lg text-white bg-primary hover:bg-opacity-90 shadow-sm transition-all group" href="#">
+<a class="book-consult-trigger inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-lg text-white bg-primary hover:bg-opacity-90 shadow-sm transition-all group" href="#">
             Book Free Consultation
             <svg class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -115,7 +115,7 @@
 <a class="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors" href="#">Events &amp; Webinars</a>
 <a class="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors" href="#">Resources</a>
 <a class="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors" href="#">About Us</a>
-<a class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-semibold rounded-lg text-white bg-primary hover:bg-opacity-90 shadow-sm transition-all mt-2" href="#">Book Free Consultation</a>
+<a class="book-consult-trigger inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-semibold rounded-lg text-white bg-primary hover:bg-opacity-90 shadow-sm transition-all mt-2" href="#">Book Free Consultation</a>
 </nav>
 </div>
 </header>
@@ -182,7 +182,7 @@
 </div>
 <!-- Buttons -->
 <div class="flex flex-col sm:flex-row gap-4 mb-10">
-<a class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-xl text-white bg-primary hover:bg-opacity-90 shadow-lg shadow-indigo-200 transition-all text-center" href="#">
+<a class="book-consult-trigger inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-xl text-white bg-primary hover:bg-opacity-90 shadow-lg shadow-indigo-200 transition-all text-center" href="#">
 <div>
 <span class="block">Book Free Consultation</span>
 <span class="block text-xs font-normal text-indigo-100 mt-0.5">Get 1:1 guidance with an expert</span>
@@ -924,9 +924,13 @@
 
       function openModal() {
         if (sessionStorage.getItem('consultationModalShown')) return;
+        showModal();
+        sessionStorage.setItem('consultationModalShown', 'true');
+      }
+
+      function showModal() {
         modal.classList.remove('hidden');
         modal.classList.add('flex');
-        sessionStorage.setItem('consultationModalShown', 'true');
       }
 
       function closeModal() {
@@ -937,6 +941,13 @@
       setTimeout(openModal, 3000);
       closeBtn.addEventListener('click', closeModal);
       overlay.addEventListener('click', closeModal);
+
+      document.querySelectorAll('.book-consult-trigger').forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+          e.preventDefault();
+          showModal();
+        });
+      });
     })();
 
     (function () {
