@@ -81,6 +81,30 @@
     .custom-shape-divider-top .shape-fill {
       fill: #ffffff;
     }
+
+    @keyframes marquee-scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes marquee-scroll-right {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll-left 30s linear infinite;
+    }
+
+    .marquee-track.marquee-right {
+      animation-name: marquee-scroll-right;
+    }
+
+    .marquee-wrapper:hover .marquee-track {
+      animation-play-state: paused;
+    }
   </style>
 </head>
 <body class="bg-white pb-20 md:pb-0">
@@ -333,30 +357,66 @@
       </h2>
 <p class="text-textMuted">We collaborate with India's top universities to bring you the best programs</p>
 </div>
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-<div class="bg-surface rounded-2xl p-6 h-28 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow">
+<div class="space-y-6">
+<!-- Top row: scrolls left -->
+<div class="marquee-wrapper overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
+<div class="marquee-track">
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
 <img alt="Amity University logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/amity.png"/>
 </div>
-<div class="bg-surface rounded-2xl p-6 h-28 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow">
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
 <img alt="Manipal University Jaipur logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/manipal-jaipur.svg"/>
 </div>
-<div class="bg-surface rounded-2xl p-6 h-28 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow">
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
 <img alt="Sikkim Manipal University logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/sikkim-manipal.svg"/>
 </div>
-<div class="bg-surface rounded-2xl p-6 h-28 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow">
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
 <img alt="Dr. D. Y. Patil Vidyapeeth Pune logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/dpu-pune.png"/>
 </div>
-<div class="bg-surface rounded-2xl p-6 h-28 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow">
+<!-- duplicate set for seamless loop -->
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
+<img alt="Amity University logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/amity.png"/>
+</div>
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
+<img alt="Manipal University Jaipur logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/manipal-jaipur.svg"/>
+</div>
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
+<img alt="Sikkim Manipal University logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/sikkim-manipal.svg"/>
+</div>
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
+<img alt="Dr. D. Y. Patil Vidyapeeth Pune logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/dpu-pune.png"/>
+</div>
+</div>
+</div>
+<!-- Bottom row: scrolls right -->
+<div class="marquee-wrapper overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
+<div class="marquee-track marquee-right">
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
 <img alt="D Y Patil University Navi Mumbai logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/dypatil-navimumbai.svg"/>
 </div>
-<div class="bg-surface rounded-2xl p-6 h-28 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow">
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
 <img alt="NMIMS logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/nmims.png"/>
 </div>
-<div class="bg-surface rounded-2xl p-6 h-28 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow">
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
 <img alt="Swami Vivekanand Global University logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/vgu.png"/>
 </div>
-<div class="bg-surface rounded-2xl p-6 h-28 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow">
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
 <img alt="IIM logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/iima.svg"/>
+</div>
+<!-- duplicate set for seamless loop -->
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
+<img alt="D Y Patil University Navi Mumbai logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/dypatil-navimumbai.svg"/>
+</div>
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
+<img alt="NMIMS logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/nmims.png"/>
+</div>
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
+<img alt="Swami Vivekanand Global University logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/vgu.png"/>
+</div>
+<div class="bg-surface rounded-2xl p-6 h-28 w-56 flex items-center justify-center border border-gray-100 hover:shadow-md transition-shadow mx-3 shrink-0">
+<img alt="IIM logo" class="max-h-14 w-auto object-contain transition-transform hover:scale-105" src="images/partners/iima.svg"/>
+</div>
+</div>
 </div>
 </div>
 </div>
