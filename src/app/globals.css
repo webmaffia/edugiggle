@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #3013b1, #6b46c1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-shadow {
+  box-shadow: 0 20px 40px -15px rgba(48, 19, 177, 0.15);
+}
+
+.custom-shape-divider-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 60px;
+}
+
+.custom-shape-divider-top .shape-fill {
+  fill: #ffffff;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
