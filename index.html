@@ -5,6 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>EduGiggle - Your Future. Our Guidance.</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <script>
     tailwind.config = {
@@ -220,15 +221,14 @@
 <h2 class="text-2xl font-extrabold text-secondary mb-2">Book Your Free Consultation</h2>
 <p class="text-sm text-textMuted">Take the first step towards a better future.</p>
 </div>
-<form class="space-y-4">
-<div>
+<form class="space-y-4" id="heroConsultForm"><div>
 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
 <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
                     Full Name
                   </label>
-<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors" placeholder="Enter your full name" required="" type="text"/>
+<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors" name="user_name" placeholder="Enter your full name" required="" type="text"/>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
@@ -237,7 +237,7 @@
 </svg>
                     WhatsApp Number
                   </label>
-<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors" placeholder="Enter your WhatsApp number" required="" type="tel"/>
+<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors" name="user_phone" placeholder="Enter your WhatsApp number" required="" type="tel"/>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
@@ -246,11 +246,11 @@
 </svg>
                     Email Address
                   </label>
-<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors" placeholder="Enter your email address" required="" type="email"/>
+<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors" name="user_email" placeholder="Enter your email address" required="" type="email"/>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-1">I am a</label>
-<select class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors">
+<select class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors" name="user_type">
 <option>Select</option>
 <option>Student (12th/UG)</option>
 <option>Working Professional</option>
@@ -258,13 +258,14 @@
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-1">I need help with</label>
-<select class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors">
+<select class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white transition-colors" name="user_goal">
 <option>Select your goal</option>
 <option>Career Counselling</option>
 <option>Course Selection</option>
 </select>
 </div>
-<button class="w-full py-4 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors mt-2" type="submit">
+<p class="hidden text-sm font-medium form-status" data-role="status"></p>
+<button class="w-full py-4 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed" type="submit">
                   Yes! I Want Expert Guidance
                 </button>
 </form>
@@ -860,15 +861,14 @@
 <h2 class="text-lg sm:text-2xl font-extrabold text-secondary mb-1 sm:mb-2">Book Your Free Consultation</h2>
 <p class="text-xs sm:text-sm text-textMuted">Take the first step towards a better future.</p>
 </div>
-<form class="space-y-2.5 sm:space-y-4">
-<div>
+<form class="space-y-2.5 sm:space-y-4" id="modalConsultForm"><div>
 <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
 <svg class="h-4 w-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
                     Full Name
                   </label>
-<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors" placeholder="Enter your full name" required="" type="text"/>
+<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors" name="user_name" placeholder="Enter your full name" required="" type="text"/>
 </div>
 <div>
 <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
@@ -877,7 +877,7 @@
 </svg>
                     WhatsApp Number
                   </label>
-<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors" placeholder="Enter your WhatsApp number" required="" type="tel"/>
+<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors" name="user_phone" placeholder="Enter your WhatsApp number" required="" type="tel"/>
 </div>
 <div>
 <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
@@ -886,11 +886,11 @@
 </svg>
                     Email Address
                   </label>
-<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors" placeholder="Enter your email address" required="" type="email"/>
+<input class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors" name="user_email" placeholder="Enter your email address" required="" type="email"/>
 </div>
 <div>
 <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">I am a</label>
-<select class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors">
+<select class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors" name="user_type">
 <option>Select</option>
 <option>Student (12th/UG)</option>
 <option>Working Professional</option>
@@ -898,13 +898,14 @@
 </div>
 <div>
 <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">I need help with</label>
-<select class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors">
+<select class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-2.5 sm:p-3 bg-gray-50 focus:bg-white transition-colors" name="user_goal">
 <option>Select your goal</option>
 <option>Career Counselling</option>
 <option>Course Selection</option>
 </select>
 </div>
-<button class="w-full py-3 sm:py-4 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors mt-1 sm:mt-2" type="submit">
+<p class="hidden text-sm font-medium form-status" data-role="status"></p>
+<button class="w-full py-3 sm:py-4 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors mt-1 sm:mt-2 disabled:opacity-60 disabled:cursor-not-allowed" type="submit">
                   Yes! I Want Expert Guidance
                 </button>
 </form>
@@ -924,6 +925,71 @@
 <!-- END: Mobile Sticky CTA -->
 <!-- END: Consultation Popup Modal -->
 <script>
+    (function () {
+      var EMAILJS_PUBLIC_KEY = 'wiwxYyqcC7OthUqHW';
+      var EMAILJS_SERVICE_ID = 'service_f28ej8a';
+      var EMAILJS_TEMPLATE_ID = 'template_p95grwl';
+
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+      function handleSubmit(form) {
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var statusEl = form.querySelector('[data-role="status"]');
+        var originalBtnText = submitBtn.textContent;
+
+        function setStatus(message, isError) {
+          statusEl.textContent = message;
+          statusEl.classList.remove('hidden', 'text-green-600', 'text-red-600');
+          statusEl.classList.add(isError ? 'text-red-600' : 'text-green-600');
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+
+          var data = new FormData(form);
+          var name = data.get('user_name') || '';
+          var email = data.get('user_email') || '';
+          var phone = data.get('user_phone') || '';
+          var userType = data.get('user_type') || '';
+          var userGoal = data.get('user_goal') || '';
+
+          var params = {
+            to_email: 'giggle.leads@gmail.com',
+            name: name,
+            email: email,
+            title: 'New Consultation Request from ' + name,
+            time: new Date().toLocaleString(),
+            message:
+              'WhatsApp Number: ' + phone +
+              '\nI am a: ' + userType +
+              '\nNeed help with: ' + userGoal
+          };
+
+          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(
+            function () {
+              setStatus('Thank you! We will get in touch with you shortly.', false);
+              form.reset();
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalBtnText;
+            },
+            function (error) {
+              console.error('EmailJS error:', error);
+              setStatus('Something went wrong. Please try again or WhatsApp us.', true);
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalBtnText;
+            }
+          );
+        });
+      }
+
+      ['heroConsultForm', 'modalConsultForm'].forEach(function (id) {
+        var form = document.getElementById(id);
+        if (form) handleSubmit(form);
+      });
+    })();
+
     (function () {
       var modal = document.getElementById('consultationModal');
       var overlay = document.getElementById('consultationModalOverlay');
