@@ -131,22 +131,45 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-surface">
+      <section className="relative py-20 bg-surface overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4 relative inline-block">
-              <span className="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-1 bg-primary rounded-full"></span>
-              Why I Started EduGiggle
-            </h2>
-          </div>
-          <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
-            <p className="text-textMuted leading-relaxed mb-6">
-              &ldquo;I have seen too many students choose a stream or a college because their friends did, not because it was right for them. I have seen working professionals stay stuck in careers that didn&apos;t fit, simply because no one ever sat down with them and asked the right questions.&rdquo;
-            </p>
-            <p className="text-textMuted leading-relaxed mb-6">
-              &ldquo;That&apos;s why I started EduGiggle — to be the guide I wish more people had access to. Not another admissions agent pushing a college, but a genuine counsellor invested in helping you find clarity, whether that&apos;s picking the right course, switching careers, or building the confidence to take the next step.&rdquo;
-            </p>
-            <p className="text-textMuted leading-relaxed font-semibold text-secondary">— Saumya Dubey, Founder</p>
+          <div className="max-w-5xl mx-auto grid md:grid-cols-[220px_1fr] gap-10 md:gap-16 items-center">
+            <div className="flex justify-center md:justify-start">
+              <div className="relative -rotate-3">
+                <div className="absolute -inset-3 bg-gradient-to-br from-primary/20 to-accent/20 rounded-[2rem] -z-10"></div>
+                <Image
+                  alt="Saumya Dubey, Founder of EduGiggle"
+                  className="w-44 h-44 md:w-52 md:h-52 rounded-[1.75rem] object-cover shadow-xl border-4 border-white"
+                  src="/about-us/founder-saumya-dubey.jpeg"
+                  width={208}
+                  height={208}
+                />
+                <div className="absolute -bottom-3 -right-3 w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center shadow-lg rotate-3">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 border border-orange-100 text-xs font-semibold text-accent mb-5">
+                IN HER OWN WORDS
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-6">
+                Why I Started <span className="gradient-text">EduGiggle</span>
+              </h2>
+              <p className="text-xl md:text-2xl font-medium text-secondary leading-snug mb-6">
+                &ldquo;I have seen too many students choose a stream or a college because their friends did, not because it was right for them.&rdquo;
+              </p>
+              <p className="text-textMuted leading-relaxed mb-8">
+                I have seen working professionals stay stuck in careers that didn&apos;t fit, simply because no one ever sat down with them and asked the right questions. That&apos;s why I started EduGiggle — to be the guide I wish more people had access to. Not another admissions agent pushing a college, but a genuine counsellor invested in helping you find clarity, whether that&apos;s picking the right course, switching careers, or building the confidence to take the next step.
+              </p>
+              <div className="flex items-center gap-3">
+                <span className="w-10 h-1 bg-primary rounded-full"></span>
+                <div>
+                  <p className="font-bold text-secondary">Saumya Dubey</p>
+                  <p className="text-sm text-textMuted">Founder, EduGiggle</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
