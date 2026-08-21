@@ -156,7 +156,40 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
             </p>
           </div>
 
-          <div className="overflow-x-auto bg-white rounded-2xl border border-gray-100 shadow-sm">
+          {/* Mobile: stacked cards, no horizontal scroll */}
+          <div className="grid grid-cols-1 gap-4 md:hidden">
+            {course.offerings.map((offering) => {
+              const uni = getUniversityBySlug(offering.universitySlug);
+              if (!uni) return null;
+              return (
+                <div key={uni.slug} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-16 h-10 shrink-0 flex items-center justify-center bg-white rounded-lg border border-gray-100 p-1">
+                      <Image alt={`${uni.name} logo`} className="max-h-7 max-w-full w-auto h-auto object-contain" src={uni.logo} width={160} height={56} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-secondary">{uni.name}</p>
+                      {offering.note && <p className="text-xs text-textMuted mt-0.5">{offering.note}</p>}
+                    </div>
+                  </div>
+                  <dl className="grid grid-cols-2 gap-y-2 text-sm mb-4">
+                    <dt className="text-textMuted">Mode</dt>
+                    <dd className="text-secondary font-medium text-right">{offering.mode}</dd>
+                    <dt className="text-textMuted">Duration</dt>
+                    <dd className="text-secondary font-medium text-right">{offering.duration}</dd>
+                    <dt className="text-textMuted">Indicative Fees</dt>
+                    <dd className="text-secondary font-medium text-right">{offering.fees}</dd>
+                  </dl>
+                  <BookConsultButton className="w-full inline-flex items-center justify-center px-4 py-2.5 border border-primary text-sm font-bold rounded-lg text-primary bg-white hover:bg-primary hover:text-white transition-colors">
+                    Enquire
+                  </BookConsultButton>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop / tablet: full comparison table */}
+          <div className="hidden md:block overflow-x-auto bg-white rounded-2xl border border-gray-100 shadow-sm">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-secondary text-white text-left">
