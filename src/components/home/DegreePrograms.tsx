@@ -1,86 +1,8 @@
-type Course = {
-  name: string;
-  fullName: string;
-  duration: string;
-  tag: string;
-  image: string;
-};
+import Link from "next/link";
+import { COURSES, type Course } from "@/lib/courses";
 
-const UG_COURSES: Course[] = [
-  {
-    name: "BBA",
-    fullName: "Bachelor of Business Administration",
-    duration: "3 Years Duration",
-    tag: "Multiple Specializations",
-    image: "/images/courses/business.jpg",
-  },
-  {
-    name: "BA",
-    fullName: "Bachelor of Arts",
-    duration: "3 Years Duration",
-    tag: "Flexible Learning",
-    image: "/images/courses/arts.jpg",
-  },
-  {
-    name: "B.Com",
-    fullName: "Bachelor of Commerce",
-    duration: "3 Years Duration",
-    tag: "Career Oriented",
-    image: "/images/courses/commerce.jpg",
-  },
-  {
-    name: "BCA",
-    fullName: "Bachelor of Computer Applications",
-    duration: "3 Years Duration",
-    tag: "Technology Focused",
-    image: "/images/courses/computer.jpg",
-  },
-  {
-    name: "B.Sc",
-    fullName: "Bachelor of Science",
-    duration: "3 Years Duration",
-    tag: "Multiple Disciplines",
-    image: "/images/courses/science.jpg",
-  },
-];
-
-const MASTERS_COURSES: Course[] = [
-  {
-    name: "MBA",
-    fullName: "Master of Business Administration",
-    duration: "2 Years Duration",
-    tag: "Industry Focused",
-    image: "/images/courses/masters-business.jpg",
-  },
-  {
-    name: "MA",
-    fullName: "Master of Arts",
-    duration: "2 Years Duration",
-    tag: "Flexible Learning",
-    image: "/images/courses/masters-arts.jpg",
-  },
-  {
-    name: "M.Com",
-    fullName: "Master of Commerce",
-    duration: "2 Years Duration",
-    tag: "Commerce Specialization",
-    image: "/images/courses/masters-commerce.jpg",
-  },
-  {
-    name: "MCA",
-    fullName: "Master of Computer Applications",
-    duration: "2 Years Duration",
-    tag: "Technology Focused",
-    image: "/images/courses/masters-computer.jpg",
-  },
-  {
-    name: "M.Sc",
-    fullName: "Master of Science",
-    duration: "2 Years Duration",
-    tag: "Advanced Learning",
-    image: "/images/courses/masters-science.jpg",
-  },
-];
+const UG_COURSES = COURSES.filter((c) => c.level === "UG");
+const MASTERS_COURSES = COURSES.filter((c) => c.level === "PG");
 
 const CHECK_ICON = (
   <svg className="h-3.5 w-3.5 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -90,7 +12,10 @@ const CHECK_ICON = (
 
 function CourseCard({ course }: { course: Course }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden flex flex-col items-center text-center">
+    <Link
+      href={`/courses/${course.slug}`}
+      className="bg-white rounded-2xl border border-gray-100 overflow-hidden flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-0.5 transition-all"
+    >
       <div
         className="w-full h-28 bg-cover bg-center"
         style={{ backgroundImage: `url(${course.image})` }}
@@ -99,12 +24,12 @@ function CourseCard({ course }: { course: Course }) {
         <h4 className="text-lg sm:text-base font-bold text-secondary">{course.name}</h4>
         <p className="text-sm sm:text-xs text-textMuted mb-4">{course.fullName}</p>
         <ul className="space-y-1.5 text-left w-full mt-auto">
-          <li className="flex items-center gap-2 text-sm sm:text-xs font-normal text-gray-700">{CHECK_ICON}{course.duration}</li>
+          <li className="flex items-center gap-2 text-sm sm:text-xs font-normal text-gray-700">{CHECK_ICON}{course.duration} Duration</li>
           <li className="flex items-center gap-2 text-sm sm:text-xs font-normal text-gray-700">{CHECK_ICON}UGC Approved</li>
           <li className="flex items-center gap-2 text-sm sm:text-xs font-normal text-gray-700">{CHECK_ICON}{course.tag}</li>
         </ul>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -137,14 +62,14 @@ function CourseBlock({
             <p className="text-sm text-textMuted">{description}</p>
           </div>
         </div>
-        <a className="inline-flex items-center justify-center gap-1 px-5 py-2.5 border border-primary text-sm font-semibold rounded-lg text-primary bg-white hover:bg-primary hover:text-white transition-colors shrink-0" href="#">
+        <Link className="inline-flex items-center justify-center gap-1 px-5 py-2.5 border border-primary text-sm font-semibold rounded-lg text-primary bg-white hover:bg-primary hover:text-white transition-colors shrink-0" href="/courses">
           {ctaLabel}
           <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-        </a>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {courses.map((course) => (
-          <CourseCard key={course.name} course={course} />
+          <CourseCard key={course.slug} course={course} />
         ))}
       </div>
     </div>
@@ -158,7 +83,7 @@ export default function DegreePrograms() {
         <CourseBlock
           title="UG Courses"
           description="Start your journey with industry-relevant undergraduate programs."
-          ctaLabel="Enquire for UG Courses"
+          ctaLabel="View All UG Courses"
           courses={UG_COURSES}
           accentBg="bg-blue-50/60"
           accentBorder="border-blue-100"
@@ -173,7 +98,7 @@ export default function DegreePrograms() {
         <CourseBlock
           title="Master's Courses"
           description="Advance your skills through specialized postgraduate programs."
-          ctaLabel="Enquire for Master's"
+          ctaLabel="View All Master's Courses"
           courses={MASTERS_COURSES}
           accentBg="bg-orange-50/60"
           accentBorder="border-orange-100"

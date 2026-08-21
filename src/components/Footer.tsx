@@ -29,7 +29,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-6">Quick Links</h3>
             <ul className="space-y-4">
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/counselling">Counselling</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Courses</Link></li>
+              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses">Courses</Link></li>
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Events &amp; Webinars</Link></li>
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Resources</Link></li>
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/about-us">About Us</Link></li>
@@ -40,11 +40,11 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-6">Top Courses</h3>
             <ul className="space-y-4">
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">MBA</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">BBA</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">BCA</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Data Science</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Digital Marketing</Link></li>
+              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses/mba">MBA</Link></li>
+              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses/bba">BBA</Link></li>
+              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses/bca">BCA</Link></li>
+              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses/msc">Data Science (M.Sc)</Link></li>
+              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses">All Courses</Link></li>
             </ul>
           </div>
 

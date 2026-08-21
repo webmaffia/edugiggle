@@ -1,0 +1,253 @@
+export type University = {
+  slug: string;
+  name: string;
+  logo: string;
+};
+
+export const UNIVERSITIES: University[] = [
+  { slug: "amity", name: "Amity University Online", logo: "/images/partners/amity.png" },
+  { slug: "manipal-jaipur", name: "Manipal University Jaipur", logo: "/images/partners/manipal-jaipur.svg" },
+  { slug: "sikkim-manipal", name: "Sikkim Manipal University", logo: "/images/partners/sikkim-manipal.svg" },
+  { slug: "dpu-pune", name: "Dr. D. Y. Patil Vidyapeeth Pune", logo: "/images/partners/dpu-pune.png" },
+  { slug: "dypatil-navimumbai", name: "D Y Patil University Navi Mumbai", logo: "/images/partners/dypatil-navimumbai.svg" },
+  { slug: "nmims", name: "NMIMS Global Access", logo: "/images/partners/nmims.png" },
+  { slug: "vgu", name: "Swami Vivekanand Global University", logo: "/images/partners/vgu.png" },
+  { slug: "iim", name: "IIM Ahmedabad", logo: "/images/partners/iima.svg" },
+];
+
+export type CourseOffering = {
+  universitySlug: string;
+  mode: string;
+  duration: string;
+  fees: string;
+  note?: string;
+};
+
+export type Course = {
+  slug: string;
+  name: string;
+  fullName: string;
+  level: "UG" | "PG";
+  duration: string;
+  tag: string;
+  image: string;
+  description: string;
+  eligibility: string;
+  highlights: string[];
+  careerProspects: string[];
+  offerings: CourseOffering[];
+};
+
+export const COURSES: Course[] = [
+  {
+    slug: "bba",
+    name: "BBA",
+    fullName: "Bachelor of Business Administration",
+    level: "UG",
+    duration: "3 Years",
+    tag: "Multiple Specializations",
+    image: "/images/courses/business.jpg",
+    description:
+      "A foundational business degree covering management, finance, marketing and HR — built for students who want to start a business career or move into an MBA later.",
+    eligibility: "12th pass (any stream) from a recognized board.",
+    highlights: ["UGC-DEB approved online/distance programs", "Specializations in Marketing, Finance & HR", "Flexible learning for working students"],
+    careerProspects: ["Business Development Executive", "Marketing Associate", "HR Coordinator", "Entrepreneurship / Family Business"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "3 Years", fees: "₹1,65,000 – ₹2,25,000 total" },
+      { universitySlug: "manipal-jaipur", mode: "Online", duration: "3 Years", fees: "₹1,35,000 total (₹22,500/sem)" },
+      { universitySlug: "sikkim-manipal", mode: "Distance", duration: "3 Years", fees: "₹1,28,000 total" },
+      { universitySlug: "dpu-pune", mode: "Online", duration: "3 Years (4-Yr Honours option)", fees: "₹1,45,400 (3-Yr) / ₹1,92,400 (4-Yr Hons)" },
+      { universitySlug: "dypatil-navimumbai", mode: "Online", duration: "3 Years (4-Yr Honours option)", fees: "₹1,45,400 (3-Yr) / ₹1,92,400 (4-Yr Hons)" },
+      { universitySlug: "nmims", mode: "Online", duration: "3 Years", fees: "₹1,31,000 (Marketing/Finance) or ₹1,45,000 (Business Analytics)" },
+      { universitySlug: "vgu", mode: "Online", duration: "3 Years", fees: "₹1,32,000 total" },
+    ],
+  },
+  {
+    slug: "ba",
+    name: "BA",
+    fullName: "Bachelor of Arts",
+    level: "UG",
+    duration: "3 Years",
+    tag: "Flexible Learning",
+    image: "/images/courses/arts.jpg",
+    description:
+      "A flexible liberal-arts degree with electives across subjects like English, Economics, Psychology and Political Science — popular for competitive-exam aspirants and working learners.",
+    eligibility: "12th pass (any stream) from a recognized board.",
+    highlights: ["Wide elective choice", "Ideal for competitive exam preparation alongside study", "Low-cost, flexible schedule"],
+    careerProspects: ["Content & Communications", "Civil Services Preparation", "Teaching", "Social Work & NGOs"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "3 Years", fees: "₹99,000 total (₹16,500/sem)" },
+      { universitySlug: "vgu", mode: "Online", duration: "3 Years", fees: "₹72,000 total" },
+    ],
+  },
+  {
+    slug: "bcom",
+    name: "B.Com",
+    fullName: "Bachelor of Commerce",
+    level: "UG",
+    duration: "3 Years",
+    tag: "Career Oriented",
+    image: "/images/courses/commerce.jpg",
+    description:
+      "A commerce degree covering accounting, taxation, banking and business law — a common base for CA/CS/CMA aspirants and finance careers.",
+    eligibility: "12th pass (Commerce preferred, other streams accepted) from a recognized board.",
+    highlights: ["Strong base for CA / CS / CMA aspirants", "Covers accounting, tax & banking", "Recognized for government & bank exams"],
+    careerProspects: ["Accounts Executive", "Tax & Audit Assistant", "Banking & Finance Roles", "CA/CS/CMA Track"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "3 Years", fees: "₹99,000 – ₹2,50,000 total (Honours)" },
+      { universitySlug: "manipal-jaipur", mode: "Online", duration: "3 Years", fees: "₹99,000 – ₹1,08,000 total" },
+      { universitySlug: "nmims", mode: "Online", duration: "3 Years", fees: "₹94,000 total (full-payment option)" },
+    ],
+  },
+  {
+    slug: "bca",
+    name: "BCA",
+    fullName: "Bachelor of Computer Applications",
+    level: "UG",
+    duration: "3 Years",
+    tag: "Technology Focused",
+    image: "/images/courses/computer.jpg",
+    description:
+      "A computer-applications degree covering programming, databases and web technologies — a launchpad into software and IT careers or an MCA later.",
+    eligibility: "12th pass (Maths preferred, varies by university) from a recognized board.",
+    highlights: ["Hands-on programming & software fundamentals", "Pathway into MCA / software roles", "Industry-aligned curriculum"],
+    careerProspects: ["Junior Software Developer", "QA / Testing Associate", "IT Support & Helpdesk", "Further study: MCA"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "3 Years", fees: "₹1,50,000 – ₹2,25,000 total" },
+      { universitySlug: "manipal-jaipur", mode: "Online", duration: "3 Years", fees: "₹1,39,500 total (₹23,250/sem)" },
+      { universitySlug: "sikkim-manipal", mode: "Distance", duration: "3 Years", fees: "₹98,000 total" },
+      { universitySlug: "dpu-pune", mode: "Online", duration: "3 Years (4-Yr Honours option)", fees: "₹1,25,000 (3-Yr) / ₹1,65,400 (4-Yr Hons)" },
+      { universitySlug: "dypatil-navimumbai", mode: "Online", duration: "3 Years (4-Yr Honours option)", fees: "₹1,25,000 – ₹1,65,400 total" },
+      { universitySlug: "vgu", mode: "Online", duration: "3 Years", fees: "₹1,32,000 total" },
+    ],
+  },
+  {
+    slug: "bsc",
+    name: "B.Sc",
+    fullName: "Bachelor of Science",
+    level: "UG",
+    duration: "3 Years",
+    tag: "Multiple Disciplines",
+    image: "/images/courses/science.jpg",
+    description:
+      "A science degree with options across disciplines such as Mathematics, IT and Data Science — a strong base for further specialization or technical roles.",
+    eligibility: "12th pass with Science stream from a recognized board.",
+    highlights: ["Choice of specialization (IT, Maths, Data Science)", "Strong analytical foundation", "Pathway into M.Sc or technical careers"],
+    careerProspects: ["Lab / Research Assistant", "Data Analyst (entry level)", "IT Executive", "Further study: M.Sc"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "3 Years", fees: "Contact for latest fees", note: "B.Sc (Hons, IT)" },
+      { universitySlug: "sikkim-manipal", mode: "Distance", duration: "3 Years", fees: "₹97,500 total (₹32,500/yr)", note: "B.Sc (IT)" },
+    ],
+  },
+  {
+    slug: "mba",
+    name: "MBA",
+    fullName: "Master of Business Administration",
+    level: "PG",
+    duration: "2 Years",
+    tag: "Industry Focused",
+    image: "/images/courses/masters-business.jpg",
+    description:
+      "A postgraduate management degree for graduates and working professionals looking to move into leadership, switch industries, or accelerate a business career.",
+    eligibility: "Graduation (any stream) from a recognized university; some universities require relevant work experience for specific specializations.",
+    highlights: ["Specializations in Marketing, Finance, HR, Operations & Analytics", "Designed for working professionals", "Executive-format options available"],
+    careerProspects: ["Manager / Team Lead roles", "Business Analyst", "Product / Operations Manager", "Career switch into management"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "2 Years", fees: "₹1,99,000 total (₹49,750/sem)" },
+      { universitySlug: "manipal-jaipur", mode: "Online", duration: "2 Years", fees: "₹1,75,000 – ₹1,80,000 total" },
+      { universitySlug: "sikkim-manipal", mode: "Distance", duration: "2 Years", fees: "~₹3,00,000 total", note: "Requires SMU-DDE Management Aptitude Test" },
+      { universitySlug: "dpu-pune", mode: "Online", duration: "2 Years", fees: "₹1,89,400 base / ₹2,19,400 with edX certification" },
+      { universitySlug: "dypatil-navimumbai", mode: "Online", duration: "2 Years", fees: "₹1,89,400 total" },
+      { universitySlug: "nmims", mode: "Online", duration: "2 Years", fees: "₹1,96,000 total (full-payment option)" },
+      { universitySlug: "vgu", mode: "Online", duration: "2 Years", fees: "₹1,50,000 total" },
+      { universitySlug: "iim", mode: "Blended (Online + On-campus)", duration: "2 Years (extendable to 3)", fees: "~₹20,00,000 total", note: "For working executives with 3+ years' experience" },
+    ],
+  },
+  {
+    slug: "ma",
+    name: "MA",
+    fullName: "Master of Arts",
+    level: "PG",
+    duration: "2 Years",
+    tag: "Flexible Learning",
+    image: "/images/courses/masters-arts.jpg",
+    description:
+      "A postgraduate arts degree with specializations such as English, Economics, Public Administration and Psychology — suited to teaching, civil services and research paths.",
+    eligibility: "Graduation (any stream) from a recognized university.",
+    highlights: ["Specialization choice across humanities & social sciences", "Recognized for teaching (with B.Ed) & academia", "Flexible for working learners"],
+    careerProspects: ["Lecturer / Teaching (with B.Ed)", "Civil Services Preparation", "Research Assistant", "Content & Public Policy Roles"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "2 Years", fees: "₹1,30,000 – ₹1,90,000 total" },
+      { universitySlug: "manipal-jaipur", mode: "Online", duration: "2 Years", fees: "₹80,000 (Economics) – ₹1,40,000 (JMC) total" },
+      { universitySlug: "vgu", mode: "Online", duration: "2 Years", fees: "₹72,000 total", note: "MA English / MA-JMC" },
+    ],
+  },
+  {
+    slug: "mcom",
+    name: "M.Com",
+    fullName: "Master of Commerce",
+    level: "PG",
+    duration: "2 Years",
+    tag: "Commerce Specialization",
+    image: "/images/courses/masters-commerce.jpg",
+    description:
+      "An advanced commerce degree deepening expertise in accounting, finance and taxation — useful for academia, finance careers and further professional certifications.",
+    eligibility: "Graduation in Commerce or a related discipline from a recognized university.",
+    highlights: ["Advanced accounting, finance & taxation modules", "Useful alongside CA/CS/CMA", "Pathway to teaching & academia (with NET)"],
+    careerProspects: ["Senior Accounts Executive", "Finance & Tax Consultant", "Academia (with NET/Ph.D)", "Banking & Financial Services"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "2 Years", fees: "Contact for latest fees" },
+      { universitySlug: "manipal-jaipur", mode: "Online", duration: "2 Years", fees: "₹1,08,000 total" },
+    ],
+  },
+  {
+    slug: "mca",
+    name: "MCA",
+    fullName: "Master of Computer Applications",
+    level: "PG",
+    duration: "2 Years",
+    tag: "Technology Focused",
+    image: "/images/courses/masters-computer.jpg",
+    description:
+      "A postgraduate computing degree covering advanced programming, cloud and data systems — built for graduates aiming at software and IT leadership roles.",
+    eligibility: "Graduation with Mathematics/Computer Science background (varies by university) from a recognized university.",
+    highlights: ["Advanced programming, cloud & data systems", "Strong placement-oriented curriculum", "Ideal after BCA / B.Sc (CS/IT)"],
+    careerProspects: ["Software Engineer", "Cloud / DevOps Associate", "Data Engineer", "IT Project Coordinator"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "2 Years", fees: "₹1,70,000 – ₹2,50,000 total" },
+      { universitySlug: "manipal-jaipur", mode: "Online", duration: "2 Years", fees: "₹1,60,000 total (₹40,000/sem)" },
+      { universitySlug: "sikkim-manipal", mode: "Distance", duration: "3 Years", fees: "₹98,000 total" },
+      { universitySlug: "dpu-pune", mode: "Online", duration: "2 Years", fees: "₹1,40,000 base / ₹1,70,000 with edX certification" },
+      { universitySlug: "dypatil-navimumbai", mode: "Online", duration: "2 Years", fees: "₹1,40,000 total" },
+      { universitySlug: "vgu", mode: "Online", duration: "2 Years", fees: "₹1,50,000 total" },
+    ],
+  },
+  {
+    slug: "msc",
+    name: "M.Sc",
+    fullName: "Master of Science",
+    level: "PG",
+    duration: "2 Years",
+    tag: "Advanced Learning",
+    image: "/images/courses/masters-science.jpg",
+    description:
+      "An advanced science degree with specializations such as Data Science, IT and Mathematics — suited to research, analytics and technical career paths.",
+    eligibility: "Graduation in a relevant Science discipline from a recognized university.",
+    highlights: ["Specialization choice (Data Science, IT, Maths)", "Strong analytical & research grounding", "Pathway to Ph.D / research roles"],
+    careerProspects: ["Data Scientist / Analyst", "Research Associate", "Academia (with NET/Ph.D)", "Technical Specialist Roles"],
+    offerings: [
+      { universitySlug: "amity", mode: "Online", duration: "2 Years", fees: "Contact for latest fees" },
+      { universitySlug: "manipal-jaipur", mode: "Online", duration: "2 Years", fees: "Contact for latest fees", note: "M.Sc Mathematics only" },
+      { universitySlug: "sikkim-manipal", mode: "Distance", duration: "2 Years", fees: "₹80,000 total (₹40,000/yr)", note: "M.Sc (IT)" },
+      { universitySlug: "vgu", mode: "Online", duration: "2 Years", fees: "₹72,000 total", note: "M.Sc Mathematics only" },
+    ],
+  },
+];
+
+export function getCourseBySlug(slug: string): Course | undefined {
+  return COURSES.find((c) => c.slug === slug);
+}
+
+export function getUniversityBySlug(slug: string): University | undefined {
+  return UNIVERSITIES.find((u) => u.slug === slug);
+}
