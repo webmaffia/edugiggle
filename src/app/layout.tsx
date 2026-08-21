@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   robots: "index, follow",
   authors: [{ name: "EduGiggle" }],
   icons: {
-    icon: "/logo.jpeg",
+    icon: "/fav.png",
   },
   openGraph: {
     title: "EduGiggle - Career Counselling & Course Guidance",

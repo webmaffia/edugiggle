@@ -144,7 +144,7 @@ export default function CounsellingPage() {
                     <div className="w-7 h-7 rounded-full bg-purple-200 border-2 border-white"></div>
                     <div className="w-7 h-7 rounded-full bg-orange-200 border-2 border-white"></div>
                   </div>
-                  <span className="text-xs font-bold text-secondary">15,000+ guided so far</span>
+                  <span className="text-xs font-bold text-secondary">1,000+ guided so far</span>
                 </div>
               </div>
 

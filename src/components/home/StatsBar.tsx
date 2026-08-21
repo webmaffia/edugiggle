@@ -1,6 +1,6 @@
 const STATS = [
   {
-    value: "15,000+",
+    value: "1,000+",
     label: "Students Guided",
     icon: (
       <>

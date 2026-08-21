@@ -17,7 +17,7 @@ const FEATURES = [
     ),
   },
   {
-    title: "Trusted by 15,000+",
+    title: "Trusted by 1,000+",
     subtitle: "Students & Professionals",
     icon: (
       <>
