@@ -6,7 +6,7 @@ import Link from "next/link";
 import BookConsultButton from "./BookConsultButton";
 
 const NAV_LINKS = [
-  { label: "Counselling", href: "/#" },
+  { label: "Counselling", href: "/counselling" },
   { label: "Courses", href: "/#" },
   { label: "Events & Webinars", href: "/#" },
   { label: "Resources", href: "/#" },
