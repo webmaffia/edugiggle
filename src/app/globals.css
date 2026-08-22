@@ -62,3 +62,16 @@ body {
   display: inline-block;
   animation: number-pop 2.4s ease-in-out infinite;
 }
+
+@keyframes blink-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(79, 70, 229, 0);
+  }
+}
+
+.animate-blink {
+  animation: blink-glow 2s ease-in-out infinite;
+}
