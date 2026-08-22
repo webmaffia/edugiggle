@@ -38,7 +38,7 @@ export default function Header() {
             <Link className="text-secondary font-semibold hover:text-primary transition-colors" href="/contact-us">
               Contact Us
             </Link>
-            <BookConsultButton className="inline-flex items-center justify-center px-6 py-2.5 border-2 border-primary text-sm font-semibold rounded-lg text-primary bg-transparent hover:bg-primary hover:text-white shadow-sm transition-all group animate-blink">
+            <BookConsultButton className="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-lg text-white bg-primary hover:bg-opacity-90 shadow-sm transition-all group">
               Book Free Consultation
               <svg className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
