@@ -101,8 +101,8 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500">© 2026 EduGiggle. Empowering Ambitious Minds.</p>
           <div className="flex gap-8">
-            <Link className="text-sm text-gray-500 hover:text-white transition-colors" href="/#">Privacy Policy</Link>
-            <Link className="text-sm text-gray-500 hover:text-white transition-colors" href="/#">Terms of Service</Link>
+            <Link className="text-sm text-gray-500 hover:text-white transition-colors" href="/privacy-policy">Privacy Policy</Link>
+            <Link className="text-sm text-gray-500 hover:text-white transition-colors" href="/terms-and-conditions">Terms &amp; Conditions</Link>
           </div>
         </div>
       </div>
