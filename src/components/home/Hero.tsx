@@ -1,3 +1,4 @@
+import Link from "next/link";
 import BookConsultButton from "../BookConsultButton";
 import ConsultForm from "../ConsultForm";
 
@@ -77,12 +78,12 @@ export default function Hero() {
                   <span className="block text-xs font-normal text-indigo-100 mt-0.5">Get 1:1 guidance with an expert</span>
                 </div>
               </BookConsultButton>
-              <a className="inline-flex items-center justify-center px-8 py-4 border border-gray-200 text-base font-bold rounded-xl text-secondary bg-white hover:bg-gray-50 shadow-sm transition-all text-center" href="#">
+              <Link className="inline-flex items-center justify-center px-8 py-4 border border-gray-200 text-base font-bold rounded-xl text-secondary bg-white hover:bg-gray-50 shadow-sm transition-all text-center" href="/courses">
                 <div>
                   <span className="block text-primary">Explore Courses</span>
                   <span className="block text-xs font-normal text-textMuted mt-0.5">Find the right program</span>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
 
