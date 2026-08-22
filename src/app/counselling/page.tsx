@@ -150,7 +150,7 @@ export default function CounsellingPage() {
               <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-purple-100 to-blue-50 rounded-full blur-3xl -z-10 opacity-70 pointer-events-none"></div>
             </div>
 
-            <div className="relative lg:col-span-3 rounded-2xl overflow-hidden shadow-xl border border-gray-100 min-h-[280px] lg:min-h-0">
+            <div className="hidden lg:block relative lg:col-span-3 rounded-2xl overflow-hidden shadow-xl border border-gray-100 min-h-[280px] lg:min-h-0">
               <Image
                 alt="Students getting guided career advice from a mentor"
                 className="object-cover"
