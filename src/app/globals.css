@@ -47,3 +47,18 @@ body {
 .marquee-wrapper:hover .marquee-track {
   animation-play-state: paused;
 }
+
+@keyframes number-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-number-pop {
+  display: inline-block;
+  animation: number-pop 2.4s ease-in-out infinite;
+}

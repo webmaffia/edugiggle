@@ -8,9 +8,9 @@ import BookConsultButton from "./BookConsultButton";
 const NAV_LINKS = [
   { label: "Counselling", href: "/counselling" },
   { label: "Courses", href: "/courses" },
-  { label: "Events & Webinars", href: "/#" },
   { label: "Resources", href: "/#" },
   { label: "About Us", href: "/about-us" },
+  { label: "Contact Us", href: "/contact-us" },
 ];
 
 export default function Header() {
