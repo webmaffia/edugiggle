@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import BookConsultButton from "@/components/BookConsultButton";
-import ConsultForm from "@/components/ConsultForm";
+import StepConsultForm from "@/components/counselling/StepConsultForm";
 import StatsBar from "@/components/home/StatsBar";
 import CounsellingProcess from "@/components/home/CounsellingProcess";
 import FaqAccordion from "@/components/counselling/FaqAccordion";
@@ -113,24 +113,64 @@ export default function CounsellingPage() {
       {/* Hero */}
       <section className="relative bg-surface overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-2xl mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-xs font-semibold text-gray-700 mb-6 shadow-sm">
+              <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center text-primary">
+                <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path clipRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fillRule="evenodd"></path>
+                </svg>
+              </div>
+              100% FREE · 1:1 EXPERT CAREER COUNSELLING
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.1]">
+              Get Career Clarity in <span className="gradient-text">One Free Session.</span>
+            </h1>
+          </div>
+
+          <div className="lg:grid lg:grid-cols-10 lg:gap-6 mb-16 items-stretch">
+            <div className="relative lg:col-span-7 mb-6 lg:mb-0">
+              <div className="bg-white rounded-2xl p-6 sm:p-8 form-shadow border border-gray-100 w-full h-full relative z-20">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-extrabold text-secondary mb-2">Book Your Free Counselling Session</h2>
+                  <p className="text-base text-textMuted">Takes less than 30 seconds. No spam, no obligation.</p>
+                </div>
+                <StepConsultForm id="counsellingHeroForm" />
+                <div className="mt-6 flex items-center justify-center gap-4 text-sm text-gray-500 font-medium flex-wrap">
+                  <span className="flex items-center gap-1">
+                    <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg> 100% Free
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <svg className="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg> Reply in 24-48 hrs
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg> 100% Confidential
+                  </span>
+                </div>
+              </div>
+              <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-purple-100 to-blue-50 rounded-full blur-3xl -z-10 opacity-70 pointer-events-none"></div>
+            </div>
+
+            <div className="relative lg:col-span-3 rounded-2xl overflow-hidden shadow-xl border border-gray-100 min-h-[280px] lg:min-h-0">
+              <Image
+                alt="Students getting guided career advice from a mentor"
+                className="object-cover"
+                fill
+                src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&h=900&q=80"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent"></div>
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <p className="text-sm font-bold">1,000+ students &amp; professionals guided</p>
+              </div>
+            </div>
+          </div>
+
           <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
             <div className="lg:col-span-6 mb-12 lg:mb-0">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-xs font-semibold text-gray-700 mb-6 shadow-sm">
-                <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center text-primary">
-                  <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path clipRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fillRule="evenodd"></path>
-                  </svg>
-                </div>
-                100% FREE · 1:1 EXPERT CAREER COUNSELLING
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.1] mb-6">
-                Get Career Clarity in <span className="gradient-text">One Free Session.</span>
-              </h1>
               <p className="text-lg text-textMuted mb-8 max-w-xl leading-relaxed">
                 Whether you&apos;re picking a stream, choosing a course, or planning a career switch — talk to a real expert counsellor who maps out a plan built around you.
               </p>
 
-              <div className="relative rounded-3xl overflow-hidden shadow-xl border border-gray-100 mb-8 max-w-lg">
+              <div className="relative rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-lg">
                 <Image
                   alt="Career counsellor guiding a student through course options"
                   className="w-full h-64 object-cover"
@@ -147,7 +187,9 @@ export default function CounsellingPage() {
                   <span className="text-xs font-bold text-secondary">1,000+ guided so far</span>
                 </div>
               </div>
+            </div>
 
+            <div className="lg:col-span-6">
               <ul className="space-y-3">
                 {BENEFITS.map((benefit) => (
                   <li key={benefit} className="flex items-start gap-3">
@@ -158,28 +200,6 @@ export default function CounsellingPage() {
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <div className="lg:col-span-6 relative">
-              <div className="bg-white rounded-2xl p-6 sm:p-8 form-shadow border border-gray-100 mx-auto max-w-md w-full relative z-20">
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-extrabold text-secondary mb-2">Book Your Free Counselling Session</h2>
-                  <p className="text-sm text-textMuted">Takes less than 30 seconds. No spam, no obligation.</p>
-                </div>
-                <ConsultForm id="counsellingHeroForm" />
-                <div className="mt-5 flex items-center justify-center gap-4 text-xs text-gray-500 font-medium flex-wrap">
-                  <span className="flex items-center gap-1">
-                    <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg> 100% Free
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <svg className="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg> Reply in 24-48 hrs
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg> 100% Confidential
-                  </span>
-                </div>
-              </div>
-              <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-purple-100 to-blue-50 rounded-full blur-3xl -z-10 opacity-70 pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -358,7 +378,7 @@ export default function CounsellingPage() {
               </ul>
             </div>
             <div className="p-8 lg:p-10">
-              <ConsultForm compact id="counsellingFinalForm" />
+              <StepConsultForm compact id="counsellingFinalForm" />
             </div>
           </div>
         </div>
