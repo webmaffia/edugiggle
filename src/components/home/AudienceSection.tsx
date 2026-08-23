@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import BookConsultButton from "@/components/BookConsultButton";
 
 export default function AudienceSection() {
   return (
@@ -16,7 +19,7 @@ export default function AudienceSection() {
               <Image
                 alt="Student with book"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                src="https://lh3.googleusercontent.com/aida/AP1WRLtCEWTwyrNe2EohaML1-uKzNFUCnRfj85TtH-fi5tF6WuYb3XIZskPYGSfkX94U90D_MVkIZAN7lgealLXCcLWqAPwrJiJYGK3Ig27ljm37ttem9fYKfTlAr2ZMNrBudxvEEMrxx3dMioxahSlMq8eKVLyZxNi_9jmupC9RbLEmuCo0fbGW3gO5TNCT2YGxFUc_LYgprWMOqaaxjz_5UT0WIwA9pzBnWqbP5BZ9ID_TdBitHW11qLnEWlY"
+                src="/images/student-guidance.jpg"
                 fill
                 sizes="(max-width: 640px) 100vw, 40vw"
               />
@@ -47,12 +50,12 @@ export default function AudienceSection() {
                   <span className="text-sm text-gray-700">Need help with admissions and career planning?</span>
                 </li>
               </ul>
-              <a className="inline-flex items-center text-primary font-bold hover:underline mt-auto" href="#">
+              <BookConsultButton className="inline-flex items-center text-primary font-bold hover:underline mt-auto">
                 Get Guidance
                 <svg className="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
                 </svg>
-              </a>
+              </BookConsultButton>
             </div>
           </div>
 
@@ -61,7 +64,7 @@ export default function AudienceSection() {
               <Image
                 alt="Working Professional"
                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                src="https://lh3.googleusercontent.com/aida/AP1WRLsj0MtHtPdPFtcj4CGmhkKCNQmuVkDCXp8k6Y_pT-oHTPDPdecv2Hbx5jagIanVMfQVL9ypZOXKS6D_qBi6DfTa0zkBwbwmYJV0NwihxkCuk50VQyb-W9mkelYW-FGVgIQC6cmr44eBCg46AjQ1rdyXdapanqAGLcsBFqrc_yS0KhXZ90EdtaK05UA_kScy-_KR9CBAuO09C6SyPavN7R429p8qEFaZN9YpCfBY4ahUzOOlGVpvn5XrIMJ-"
+                src="/images/professional-guidance.jpg"
                 fill
                 sizes="(max-width: 640px) 100vw, 40vw"
               />
@@ -90,12 +93,12 @@ export default function AudienceSection() {
                   <span className="text-sm text-gray-700">Looking for flexible online degree programs?</span>
                 </li>
               </ul>
-              <a className="inline-flex items-center text-green-600 font-bold hover:underline mt-auto" href="#">
+              <BookConsultButton className="inline-flex items-center text-green-600 font-bold hover:underline mt-auto">
                 Get Guidance
                 <svg className="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
                 </svg>
-              </a>
+              </BookConsultButton>
             </div>
           </div>
         </div>
