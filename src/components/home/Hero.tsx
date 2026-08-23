@@ -244,15 +244,15 @@ export default function Hero() {
           </div>
 
           {/* Right Column - Form Card */}
-          <div className="lg:col-span-6 relative">
-            {/* Floating annotation */}
-            <div className="hero-annotation absolute -right-2 lg:-right-4 top-4 z-30 flex items-center gap-1.5 bg-accent/10 text-accent text-xs font-bold px-3 py-1.5 rounded-full border border-accent/20">
+          <div className="lg:col-span-6 relative lg:pl-8">
+            {/* Floating annotation - top of form */}
+            <div className="hero-annotation flex justify-center mb-3 hidden sm:flex items-center gap-1.5 bg-accent/10 text-accent text-xs font-bold px-3 py-1.5 rounded-full border border-accent/20 w-fit mx-auto lg:mx-0 lg:ml-auto">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
               Takes less than 30 sec!
             </div>
 
             {/* Live notification badge */}
-            <div className="hero-notification absolute -left-4 lg:-left-6 bottom-8 z-30 bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2 max-w-[200px]">
+            <div className="hero-notification absolute -left-4 lg:-left-8 bottom-8 z-30 bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2 max-w-[200px]">
               <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                 <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
               </div>
@@ -263,7 +263,7 @@ export default function Hero() {
             </div>
 
             {/* Glowing card wrapper */}
-            <div className="hero-form-glow relative z-20 mx-auto max-w-md w-full">
+            <div className="hero-form-glow relative z-20 mx-auto lg:ml-auto lg:mr-0 max-w-md w-full">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-purple-400/20 to-primary/20 rounded-3xl blur-lg opacity-60 animate-pulse-slow pointer-events-none" />
               <div className="relative bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-xl">
                 <div className="text-center mb-6">
