@@ -79,10 +79,11 @@ body {
 /* Hero Section Animations */
 .hero-gradient-bg {
   background:
-    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(48, 19, 177, 0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(113, 42, 226, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 50% 80%, rgba(242, 110, 34, 0.03) 0%, transparent 50%),
-    #f8f9ff;
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(48, 19, 177, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(113, 42, 226, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 80%, rgba(242, 110, 34, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 60% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+    linear-gradient(180deg, #e8ecff 0%, #f0f2ff 50%, #fff0e8 100%);
 }
 
 .hero-headline-gradient {
