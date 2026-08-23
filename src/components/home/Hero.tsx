@@ -68,6 +68,17 @@ function useAnimatedCounter(end: number, duration: number = 2000) {
 
 const TYPING_WORDS = ["Career Planning", "Course Selection", "University Admission", "Study Abroad"];
 
+const NOTIFICATIONS = [
+  { name: "Priya", city: "Delhi" },
+  { name: "Rahul", city: "Mumbai" },
+  { name: "Ananya", city: "Bangalore" },
+  { name: "Vikram", city: "Hyderabad" },
+  { name: "Sneha", city: "Chennai" },
+  { name: "Arjun", city: "Pune" },
+  { name: "Kavya", city: "Jaipur" },
+  { name: "Rohan", city: "Kolkata" },
+];
+
 function useTypingEffect() {
   const [wordIdx, setWordIdx] = useState(0);
   const [text, setText] = useState("");
@@ -97,12 +108,25 @@ function useTypingEffect() {
 export default function Hero() {
   const studentCount = useAnimatedCounter(1247, 2500);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
+  const [notifIdx, setNotifIdx] = useState(0);
+  const [notifVisible, setNotifVisible] = useState(true);
   const typingText = useTypingEffect();
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTestimonialIdx((prev) => (prev + 1) % TESTIMONIALS.length);
     }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNotifVisible(false);
+      setTimeout(() => {
+        setNotifIdx((prev) => (prev + 1) % NOTIFICATIONS.length);
+        setNotifVisible(true);
+      }, 300);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -252,13 +276,13 @@ export default function Hero() {
             </div>
 
             {/* Live notification badge */}
-            <div className="hero-notification absolute -left-4 lg:-left-8 bottom-8 z-30 bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2 max-w-[200px]">
+            <div className={`hero-notification absolute -left-4 lg:-left-8 bottom-8 z-30 bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2 max-w-[200px] transition-all duration-300 ${notifVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"}`}>
               <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                 <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
               </div>
               <div className="min-w-0">
                 <p className="text-[10px] font-bold text-secondary truncate">Consultation Booked!</p>
-                <p className="text-[9px] text-textMuted truncate">Priya from Delhi just now</p>
+                <p className="text-[9px] text-textMuted truncate">{NOTIFICATIONS[notifIdx].name} from {NOTIFICATIONS[notifIdx].city} just now</p>
               </div>
             </div>
 
