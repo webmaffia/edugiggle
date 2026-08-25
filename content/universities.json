@@ -1,0 +1,10 @@
+[
+  { "slug": "amity", "name": "Amity University Online", "logo": "/images/partners/amity.png" },
+  { "slug": "manipal-jaipur", "name": "Manipal University Jaipur", "logo": "/images/partners/manipal-jaipur.svg" },
+  { "slug": "sikkim-manipal", "name": "Sikkim Manipal University", "logo": "/images/partners/sikkim-manipal.svg" },
+  { "slug": "dpu-pune", "name": "Dr. D. Y. Patil Vidyapeeth Pune", "logo": "/images/partners/dpu-pune.png" },
+  { "slug": "dypatil-navimumbai", "name": "D Y Patil University Navi Mumbai", "logo": "/images/partners/dypatil-navimumbai.svg" },
+  { "slug": "nmims", "name": "NMIMS Global Access", "logo": "/images/partners/nmims.png" },
+  { "slug": "vgu", "name": "Swami Vivekanand Global University", "logo": "/images/partners/vgu.png" },
+  { "slug": "iim", "name": "IIM Ahmedabad", "logo": "/images/partners/iima.svg" }
+]

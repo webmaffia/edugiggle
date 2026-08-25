@@ -1,11 +1,24 @@
-const BENEFITS = [
-  "Your top career options",
-  "Recommended courses",
-  "Skills you should focus on",
-  "Personalized roadmap",
-];
+import { readSection } from "@/lib/content-store";
 
-export default function CareerAssessment() {
+type CareerAssessmentData = {
+  badgeText: string;
+  heading: string;
+  subheading: string;
+  benefits: string[];
+  ctaLabel: string;
+};
+
+const DEFAULT_DATA: CareerAssessmentData = {
+  badgeText: "FREE CAREER CLARITY ASSESSMENT",
+  heading: "Not Sure What's Right for You?",
+  subheading: "Take our 2-min assessment and get:",
+  benefits: ["Your top career options", "Recommended courses", "Skills you should focus on", "Personalized roadmap"],
+  ctaLabel: "Take Free Assessment Now",
+};
+
+export default async function CareerAssessment() {
+  const data = await readSection<CareerAssessmentData>("home.careerAssessment", DEFAULT_DATA);
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,12 +26,12 @@ export default function CareerAssessment() {
           <div className="md:w-1/2">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-blue-200 text-xs font-semibold text-primary mb-4 shadow-sm">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-              FREE CAREER CLARITY ASSESSMENT
+              {data.badgeText}
             </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">Not Sure What&apos;s Right for You?</h2>
-            <p className="text-textMuted mb-6">Take our 2-min assessment and get:</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">{data.heading}</h2>
+            <p className="text-textMuted mb-6">{data.subheading}</p>
             <ul className="space-y-3 mb-8">
-              {BENEFITS.map((benefit) => (
+              {data.benefits.map((benefit) => (
                 <li key={benefit} className="flex items-center gap-3">
                   <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
                   <span className="text-gray-700">{benefit}</span>
@@ -26,7 +39,7 @@ export default function CareerAssessment() {
               ))}
             </ul>
             <a className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-bold rounded-xl text-white bg-primary hover:bg-opacity-90 shadow-lg shadow-indigo-200 transition-all" href="#">
-              Take Free Assessment Now
+              {data.ctaLabel}
               <svg className="h-4 w-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
             </a>
           </div>

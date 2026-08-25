@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BookConsultButton from "@/components/BookConsultButton";
 import UniversityPartners from "@/components/home/UniversityPartners";
-import { COURSES, type Course } from "@/lib/courses";
+import { getCourses, type Course } from "@/lib/courses";
 
 export const metadata: Metadata = {
   title: "Explore UG & PG Courses Across Top Universities | EduGiggle",
@@ -19,9 +19,6 @@ export const metadata: Metadata = {
     images: ["/logo.jpeg"],
   },
 };
-
-const UG_COURSES = COURSES.filter((c) => c.level === "UG");
-const PG_COURSES = COURSES.filter((c) => c.level === "PG");
 
 function CourseCard({ course }: { course: Course }) {
   return (
@@ -46,7 +43,11 @@ function CourseCard({ course }: { course: Course }) {
   );
 }
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
+  const courses = await getCourses();
+  const UG_COURSES = courses.filter((c) => c.level === "UG");
+  const PG_COURSES = courses.filter((c) => c.level === "PG");
+
   return (
     <main>
       <section className="bg-surface pt-16 pb-14">

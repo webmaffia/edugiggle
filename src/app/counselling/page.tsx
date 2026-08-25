@@ -6,6 +6,7 @@ import StepConsultForm from "@/components/counselling/StepConsultForm";
 import StatsBar from "@/components/home/StatsBar";
 import CounsellingProcess from "@/components/home/CounsellingProcess";
 import FaqAccordion from "@/components/counselling/FaqAccordion";
+import { getCourses } from "@/lib/courses";
 
 export const metadata: Metadata = {
   title: "Free Career Counselling for Students & Professionals | EduGiggle",
@@ -101,10 +102,12 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function CounsellingPage() {
+export default async function CounsellingPage() {
+  const courses = await getCourses();
+
   return (
     <main>
-      <CounsellingHero />
+      <CounsellingHero courses={courses} />
 
       <StatsBar />
 
@@ -279,7 +282,7 @@ export default function CounsellingPage() {
               </ul>
             </div>
             <div className="p-8 lg:p-10">
-              <StepConsultForm compact id="counsellingFinalForm" />
+              <StepConsultForm compact id="counsellingFinalForm" courses={courses} />
             </div>
           </div>
         </div>

@@ -1,5 +1,26 @@
 import type { Metadata } from "next";
 import ConsultForm from "@/components/ConsultForm";
+import { readSection } from "@/lib/content-store";
+
+type ContactData = {
+  heroTitle: string;
+  heroIntro: string;
+  phone: string;
+  email: string;
+  location: string;
+  sectionHeading: string;
+  sectionIntro: string;
+};
+
+const DEFAULT_DATA: ContactData = {
+  heroTitle: "Contact EduGiggle",
+  heroIntro: "Have a question about counselling, courses, or admissions? Reach out and our team will get back to you shortly.",
+  phone: "+91 81694 70610",
+  email: "hello@edugiggle.com",
+  location: "Navi Mumbai, India",
+  sectionHeading: "We'd Love to Hear From You",
+  sectionIntro: "Whether you're a student figuring out your next step or a working professional exploring a career change, our team is here to help.",
+};
 
 export const metadata: Metadata = {
   title: "Contact Us - EduGiggle | Get in Touch",
@@ -23,50 +44,36 @@ export const metadata: Metadata = {
   },
 };
 
-const CONTACT_DETAILS = [
-  {
-    label: "Call Us",
-    value: "+91 81694 70610",
-    href: "tel:+918169470610",
-    color: "text-primary",
-    icon: (
-      <path
-        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    ),
-  },
-  {
-    label: "Email Us",
-    value: "hello@edugiggle.com",
-    href: "mailto:hello@edugiggle.com",
-    color: "text-primary",
-    icon: (
-      <path
-        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    ),
-  },
-  {
-    label: "Location",
-    value: "Navi Mumbai, India",
-    href: undefined,
-    color: "text-primary",
-    icon: (
-      <>
-        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-      </>
-    ),
-  },
+const CONTACT_DETAIL_ICONS = [
+  <path
+    key="phone"
+    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+  />,
+  <path
+    key="email"
+    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+  />,
+  <g key="location">
+    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+  </g>,
 ];
 
-export default function ContactUsPage() {
+export default async function ContactUsPage() {
+  const data = await readSection<ContactData>("contact.body", DEFAULT_DATA);
+  const phoneDigits = data.phone.replace(/\D/g, "");
+  const contactDetails = [
+    { label: "Call Us", value: data.phone, href: `tel:+${phoneDigits}` },
+    { label: "Email Us", value: data.email, href: `mailto:${data.email}` },
+    { label: "Location", value: data.location, href: undefined },
+  ];
+
   return (
     <main>
       <section className="relative bg-surface overflow-hidden py-16 lg:py-20">
@@ -74,12 +81,8 @@ export default function ContactUsPage() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-xs font-semibold text-gray-700 mb-6 shadow-sm">
             GET IN TOUCH
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.1] mb-6">
-            Contact <span className="gradient-text">EduGiggle</span>
-          </h1>
-          <p className="text-lg text-textMuted max-w-2xl mx-auto leading-relaxed">
-            Have a question about counselling, courses, or admissions? Reach out and our team will get back to you shortly.
-          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.1] mb-6">{data.heroTitle}</h1>
+          <p className="text-lg text-textMuted max-w-2xl mx-auto leading-relaxed">{data.heroIntro}</p>
         </div>
       </section>
 
@@ -90,12 +93,12 @@ export default function ContactUsPage() {
           </p>
           <a
             className="inline-flex items-center gap-3 text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white hover:text-secondary transition-colors"
-            href="tel:+918169470610"
+            href={`tel:+${phoneDigits}`}
           >
             <svg className="w-7 h-7 sm:w-8 sm:h-8 shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+              {CONTACT_DETAIL_ICONS[0]}
             </svg>
-            <span className="animate-number-pop">+91 81694 70610</span>
+            <span className="animate-number-pop">{data.phone}</span>
           </a>
         </div>
       </section>
@@ -107,13 +110,11 @@ export default function ContactUsPage() {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-primary mb-4">
                 REACH OUT TO US
               </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-6">We&apos;d Love to Hear From You</h2>
-              <p className="text-textMuted leading-relaxed mb-10">
-                Whether you&apos;re a student figuring out your next step or a working professional exploring a career change, our team is here to help.
-              </p>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-6">{data.sectionHeading}</h2>
+              <p className="text-textMuted leading-relaxed mb-10">{data.sectionIntro}</p>
 
               <div className="space-y-6 mb-10">
-                {CONTACT_DETAILS.map((item) => {
+                {contactDetails.map((item, i) => {
                   const Wrapper = item.href ? "a" : "div";
                   return (
                     <Wrapper
@@ -121,9 +122,9 @@ export default function ContactUsPage() {
                       className="flex items-center gap-4"
                       {...(item.href ? { href: item.href } : {})}
                     >
-                      <div className={`w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center ${item.color} shrink-0`}>
+                      <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-primary shrink-0">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          {item.icon}
+                          {CONTACT_DETAIL_ICONS[i]}
                         </svg>
                       </div>
                       <div>
@@ -137,7 +138,7 @@ export default function ContactUsPage() {
 
               <a
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-transparent text-sm font-bold rounded-xl text-white bg-green-500 hover:bg-green-600 shadow-sm transition-all"
-                href="https://wa.me/918169470610"
+                href={`https://wa.me/${phoneDigits}`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -159,14 +160,14 @@ export default function ContactUsPage() {
 
       <section className="w-full h-[450px]">
         <iframe
-          src="https://www.google.com/maps?q=Navi+Mumbai,+Maharashtra,+India&output=embed"
+          src={`https://www.google.com/maps?q=${encodeURIComponent(data.location)}&output=embed`}
           width="100%"
           height="100%"
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="EduGiggle Location - Navi Mumbai"
+          title={`EduGiggle Location - ${data.location}`}
         />
       </section>
     </main>

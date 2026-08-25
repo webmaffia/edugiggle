@@ -4,15 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import BookConsultButton from "@/components/BookConsultButton";
 import ConsultForm from "@/components/ConsultForm";
-import { COURSES, getCourseBySlug, getUniversityBySlug } from "@/lib/courses";
+import { getCourses, getCourseBySlug, getUniversities } from "@/lib/courses";
 
-export function generateStaticParams() {
-  return COURSES.map((course) => ({ slug: course.slug }));
+export async function generateStaticParams() {
+  const courses = await getCourses();
+  return courses.map((course) => ({ slug: course.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const course = getCourseBySlug(slug);
+  const course = await getCourseBySlug(slug);
   if (!course) return {};
 
   const title = `${course.fullName} (${course.name}) - Fees, Eligibility & Top Universities | EduGiggle`;
@@ -42,8 +43,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CourseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const course = getCourseBySlug(slug);
+  const course = await getCourseBySlug(slug);
   if (!course) notFound();
+
+  const universities = await getUniversities();
+  const universityBySlug = new Map(universities.map((u) => [u.slug, u]));
 
   return (
     <main>
@@ -159,7 +163,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
           {/* Mobile: stacked cards, no horizontal scroll */}
           <div className="grid grid-cols-1 gap-4 md:hidden">
             {course.offerings.map((offering) => {
-              const uni = getUniversityBySlug(offering.universitySlug);
+              const uni = universityBySlug.get(offering.universitySlug);
               if (!uni) return null;
               return (
                 <div key={uni.slug} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
@@ -202,7 +206,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
               </thead>
               <tbody>
                 {course.offerings.map((offering) => {
-                  const uni = getUniversityBySlug(offering.universitySlug);
+                  const uni = universityBySlug.get(offering.universitySlug);
                   if (!uni) return null;
                   return (
                     <tr key={uni.slug} className="border-t border-gray-100 hover:bg-surface/60 transition-colors">

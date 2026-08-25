@@ -1,6 +1,50 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import BookConsultButton from "@/components/BookConsultButton";
+import { readSection } from "@/lib/content-store";
+
+type AboutData = {
+  heroTitle: string;
+  heroIntro: string;
+  founderName: string;
+  founderTagline: string;
+  founderParagraphs: string[];
+  founderQuote: string;
+  founderQuoteBody: string;
+  visionHeading: string;
+  visionIntro: string;
+  visionCards: { title: string; description: string }[];
+  ctaHeading: string;
+  ctaSubtext: string;
+};
+
+const DEFAULT_DATA: AboutData = {
+  heroTitle: "About EduGiggle",
+  heroIntro:
+    "We started EduGiggle to bring honest, human guidance to a system that too often leaves students and professionals confused, alone, and unsure of their next step.",
+  founderName: "Saumya Dubey",
+  founderTagline: "Founder, EduGiggle",
+  founderParagraphs: [
+    "Saumya Dubey founded EduGiggle after seeing, time and again, how brilliant students and hardworking professionals were making life-altering education and career decisions with little more than guesswork, peer pressure, and unreliable information.",
+    "Having spent years navigating the world of counselling, admissions, and career transitions herself, Saumya understood how overwhelming the choices can feel — and how much clarity, confidence, and the right guidance can change a person's entire trajectory.",
+    "With over 6 years of experience working as a consultant, Saumya has personally guided more than 1000+ candidates — many of whom remain in touch with her to this day, now thriving in good companies.",
+    "Today, she leads EduGiggle with a simple belief: every student and professional deserves a mentor who genuinely listens, understands their story, and helps them choose a path they'll be proud of.",
+  ],
+  founderQuote:
+    "I have seen too many students choose a stream or a college because their friends did, not because it was right for them.",
+  founderQuoteBody:
+    "I have seen working professionals stay stuck in careers that didn't fit, simply because no one ever sat down with them and asked the right questions. That's why I started EduGiggle — to be the guide I wish more people had access to. Not another admissions agent pushing a college, but a genuine counsellor invested in helping you find clarity, whether that's picking the right course, switching careers, or building the confidence to take the next step.",
+  visionHeading: "Our Vision",
+  visionIntro:
+    "To become India's most trusted name in education and career guidance — a place where every decision starts with clarity, not confusion.",
+  visionCards: [
+    { title: "Clarity Over Confusion", description: "Helping every student and professional make informed, confident choices about their future." },
+    { title: "People-First Guidance", description: "Counselling built around your goals and story, not sales targets or commissions." },
+    { title: "Lasting Impact", description: "Empowering thousands of ambitious minds to build careers they truly love." },
+  ],
+  ctaHeading: "Let's Find Clarity Together",
+  ctaSubtext: "Book a free consultation and take the first step towards a future you're excited about.",
+};
 
 export const metadata: Metadata = {
   title: "About Us - EduGiggle | Meet Founder Saumya Dubey",
@@ -26,34 +70,14 @@ export const metadata: Metadata = {
   },
 };
 
-const VISION_CARDS = [
-  {
-    title: "Clarity Over Confusion",
-    description: "Helping every student and professional make informed, confident choices about their future.",
-    bg: "bg-blue-50",
-    border: "border-blue-100",
-    color: "text-primary",
-    icon: <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />,
-  },
-  {
-    title: "People-First Guidance",
-    description: "Counselling built around your goals and story, not sales targets or commissions.",
-    bg: "bg-green-50",
-    border: "border-green-100",
-    color: "text-green-600",
-    icon: <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />,
-  },
-  {
-    title: "Lasting Impact",
-    description: "Empowering thousands of ambitious minds to build careers they truly love.",
-    bg: "bg-orange-50",
-    border: "border-orange-100",
-    color: "text-accent",
-    icon: <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />,
-  },
+const VISION_CARD_STYLES = [
+  { bg: "bg-blue-50", border: "border-blue-100", color: "text-primary", icon: <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /> },
+  { bg: "bg-green-50", border: "border-green-100", color: "text-green-600", icon: <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /> },
+  { bg: "bg-orange-50", border: "border-orange-100", color: "text-accent", icon: <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /> },
 ];
 
-export default function AboutUsPage() {
+export default async function AboutUsPage() {
+  const data = await readSection<AboutData>("about.body", DEFAULT_DATA);
   return (
     <main>
       <section className="relative bg-surface overflow-hidden py-16 lg:py-20">
@@ -62,11 +86,9 @@ export default function AboutUsPage() {
             OUR STORY
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary tracking-tight leading-[1.1] mb-6">
-            About <span className="gradient-text">EduGiggle</span>
+            {data.heroTitle}
           </h1>
-          <p className="text-lg text-textMuted max-w-2xl mx-auto leading-relaxed">
-            We started EduGiggle to bring honest, human guidance to a system that too often leaves students and professionals confused, alone, and unsure of their next step.
-          </p>
+          <p className="text-lg text-textMuted max-w-2xl mx-auto leading-relaxed">{data.heroIntro}</p>
         </div>
       </section>
 
@@ -89,9 +111,9 @@ export default function AboutUsPage() {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-primary mb-4">
                 MEET OUR FOUNDER
               </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-2">Saumya Dubey</h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-2">{data.founderName}</h2>
               <div className="flex items-center gap-3 mb-6">
-                <p className="text-sm font-semibold text-textMuted">Founder, EduGiggle</p>
+                <p className="text-sm font-semibold text-textMuted">{data.founderTagline}</p>
                 <a
                   aria-label="Saumya Dubey on LinkedIn"
                   className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
@@ -113,18 +135,9 @@ export default function AboutUsPage() {
                 </div>
               </div>
               <div className="space-y-4 text-textMuted leading-relaxed">
-                <p>
-                  Saumya Dubey founded EduGiggle after seeing, time and again, how brilliant students and hardworking professionals were making life-altering education and career decisions with little more than guesswork, peer pressure, and unreliable information.
-                </p>
-                <p>
-                  Having spent years navigating the world of counselling, admissions, and career transitions herself, Saumya understood how overwhelming the choices can feel — and how much clarity, confidence, and the right guidance can change a person&apos;s entire trajectory.
-                </p>
-                <p>
-                  With over 6 years of experience working as a consultant, Saumya has personally guided more than 1000+ candidates — many of whom remain in touch with her to this day, now thriving in good companies.
-                </p>
-                <p>
-                  Today, she leads EduGiggle with a simple belief: every student and professional deserves a mentor who genuinely listens, understands their story, and helps them choose a path they&apos;ll be proud of.
-                </p>
+                {data.founderParagraphs.map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
               </div>
             </div>
           </div>
@@ -156,17 +169,13 @@ export default function AboutUsPage() {
               <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-6">
                 Why I Started <span className="gradient-text">EduGiggle</span>
               </h2>
-              <p className="text-xl md:text-2xl font-medium text-secondary leading-snug mb-6">
-                &ldquo;I have seen too many students choose a stream or a college because their friends did, not because it was right for them.&rdquo;
-              </p>
-              <p className="text-textMuted leading-relaxed mb-8">
-                I have seen working professionals stay stuck in careers that didn&apos;t fit, simply because no one ever sat down with them and asked the right questions. That&apos;s why I started EduGiggle — to be the guide I wish more people had access to. Not another admissions agent pushing a college, but a genuine counsellor invested in helping you find clarity, whether that&apos;s picking the right course, switching careers, or building the confidence to take the next step.
-              </p>
+              <p className="text-xl md:text-2xl font-medium text-secondary leading-snug mb-6">&ldquo;{data.founderQuote}&rdquo;</p>
+              <p className="text-textMuted leading-relaxed mb-8">{data.founderQuoteBody}</p>
               <div className="flex items-center gap-3">
                 <span className="w-10 h-1 bg-primary rounded-full"></span>
                 <div>
-                  <p className="font-bold text-secondary">Saumya Dubey</p>
-                  <p className="text-sm text-textMuted">Founder, EduGiggle</p>
+                  <p className="font-bold text-secondary">{data.founderName}</p>
+                  <p className="text-sm text-textMuted">{data.founderTagline}</p>
                 </div>
               </div>
             </div>
@@ -179,32 +188,33 @@ export default function AboutUsPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4 relative inline-block">
               <span className="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-1 bg-primary rounded-full"></span>
-              Our Vision
+              {data.visionHeading}
             </h2>
-            <p className="text-textMuted">
-              To become India&apos;s most trusted name in education and career guidance — a place where every decision starts with clarity, not confusion.
-            </p>
+            <p className="text-textMuted">{data.visionIntro}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {VISION_CARDS.map((card) => (
-              <div key={card.title} className={`${card.bg} p-8 rounded-2xl border ${card.border} text-center flex flex-col items-center`}>
-                <div className={`w-14 h-14 bg-white rounded-full flex items-center justify-center ${card.color} mb-5 shadow-sm`}>
-                  <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    {card.icon}
-                  </svg>
+            {data.visionCards.map((card, i) => {
+              const style = VISION_CARD_STYLES[i % VISION_CARD_STYLES.length];
+              return (
+                <div key={card.title} className={`${style.bg} p-8 rounded-2xl border ${style.border} text-center flex flex-col items-center`}>
+                  <div className={`w-14 h-14 bg-white rounded-full flex items-center justify-center ${style.color} mb-5 shadow-sm`}>
+                    <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      {style.icon}
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-secondary mb-2">{card.title}</h3>
+                  <p className="text-sm text-textMuted">{card.description}</p>
                 </div>
-                <h3 className="text-lg font-bold text-secondary mb-2">{card.title}</h3>
-                <p className="text-sm text-textMuted">{card.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       <section className="py-20 bg-secondary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Let&apos;s Find Clarity Together</h2>
-          <p className="text-indigo-200 max-w-xl mx-auto mb-8">Book a free consultation and take the first step towards a future you&apos;re excited about.</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">{data.ctaHeading}</h2>
+          <p className="text-indigo-200 max-w-xl mx-auto mb-8">{data.ctaSubtext}</p>
           <BookConsultButton className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-xl text-white bg-primary hover:bg-opacity-90 shadow-lg shadow-indigo-900/50 transition-all">
             Book Free Consultation
             <svg className="h-4 w-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>

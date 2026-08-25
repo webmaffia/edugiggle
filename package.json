@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.10",
     "next": "^16.3.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.9",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "20.19.43",
     "@types/react": "19.2.18",
     "@types/react-dom": "^19.1.0",

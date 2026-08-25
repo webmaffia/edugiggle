@@ -1,8 +1,5 @@
 import Link from "next/link";
-import { COURSES, type Course } from "@/lib/courses";
-
-const UG_COURSES = COURSES.filter((c) => c.level === "UG");
-const MASTERS_COURSES = COURSES.filter((c) => c.level === "PG");
+import { getCourses, type Course } from "@/lib/courses";
 
 const CHECK_ICON = (
   <svg className="h-3.5 w-3.5 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -76,7 +73,11 @@ function CourseBlock({
   );
 }
 
-export default function DegreePrograms() {
+export default async function DegreePrograms() {
+  const courses = await getCourses();
+  const UG_COURSES = courses.filter((c) => c.level === "UG");
+  const MASTERS_COURSES = courses.filter((c) => c.level === "PG");
+
   return (
     <section className="py-20 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">

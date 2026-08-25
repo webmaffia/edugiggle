@@ -1,18 +1,5 @@
 import Image from "next/image";
-
-const TOP_ROW = [
-  { alt: "Amity University logo", src: "/images/partners/amity.png" },
-  { alt: "Manipal University Jaipur logo", src: "/images/partners/manipal-jaipur.svg" },
-  { alt: "Sikkim Manipal University logo", src: "/images/partners/sikkim-manipal.svg" },
-  { alt: "Dr. D. Y. Patil Vidyapeeth Pune logo", src: "/images/partners/dpu-pune.png" },
-];
-
-const BOTTOM_ROW = [
-  { alt: "D Y Patil University Navi Mumbai logo", src: "/images/partners/dypatil-navimumbai.svg" },
-  { alt: "NMIMS logo", src: "/images/partners/nmims.png" },
-  { alt: "Swami Vivekanand Global University logo", src: "/images/partners/vgu.png" },
-  { alt: "IIM logo", src: "/images/partners/iima.svg" },
-];
+import { getUniversities } from "@/lib/courses";
 
 function PartnerLogo({ alt, src }: { alt: string; src: string }) {
   return (
@@ -22,7 +9,12 @@ function PartnerLogo({ alt, src }: { alt: string; src: string }) {
   );
 }
 
-export default function UniversityPartners() {
+export default async function UniversityPartners() {
+  const universities = await getUniversities();
+  const mid = Math.ceil(universities.length / 2);
+  const topRow = universities.slice(0, mid);
+  const bottomRow = universities.slice(mid);
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,8 +34,8 @@ export default function UniversityPartners() {
             }}
           >
             <div className="marquee-track animate-marquee-left">
-              {[...TOP_ROW, ...TOP_ROW].map((logo, i) => (
-                <PartnerLogo key={`${logo.alt}-${i}`} alt={logo.alt} src={logo.src} />
+              {[...topRow, ...topRow].map((uni, i) => (
+                <PartnerLogo key={`${uni.slug}-${i}`} alt={`${uni.name} logo`} src={uni.logo} />
               ))}
             </div>
           </div>
@@ -55,8 +47,8 @@ export default function UniversityPartners() {
             }}
           >
             <div className="marquee-track animate-marquee-right">
-              {[...BOTTOM_ROW, ...BOTTOM_ROW].map((logo, i) => (
-                <PartnerLogo key={`${logo.alt}-${i}`} alt={logo.alt} src={logo.src} />
+              {[...bottomRow, ...bottomRow].map((uni, i) => (
+                <PartnerLogo key={`${uni.slug}-${i}`} alt={`${uni.name} logo`} src={uni.logo} />
               ))}
             </div>
           </div>

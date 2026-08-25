@@ -1,8 +1,34 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import StepConsultForm from "./StepConsultForm";
-import type { Course } from "@/lib/courses";
+import BookConsultButton from "../BookConsultButton";
+import ConsultForm from "../ConsultForm";
+
+export type HeroFeature = { title: string; subtitle: string };
+export type HeroTestimonial = { name: string; role: string; text: string };
+
+export type HeroData = {
+  badgeText: string;
+  headlineLine1: string;
+  headlineLine2: string;
+  subheadline: string;
+  typingWords: string[];
+  features: HeroFeature[];
+  testimonials: HeroTestimonial[];
+  studentCount: string;
+};
+
+const FEATURE_ICONS = [
+  <path key="0" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />,
+  <path key="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />,
+  <>
+    <path key="2a" d="M12 14l9-5-9-5-9 5 9 5z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+    <path key="2b" d="M12 14v7l-9-5V9l9 5z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+  </>,
+];
+
+const DEFAULT_ICON = <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />;
 
 const FLOATING_ICONS = [
   { icon: "🎓", class: "hero-float-icon-1", pos: "top-16 left-[8%]", size: "text-2xl" },
@@ -13,21 +39,6 @@ const FLOATING_ICONS = [
   { icon: "✨", class: "hero-float-icon-3", pos: "top-24 left-[45%]", size: "text-lg" },
 ];
 
-const TYPING_WORDS = ["Stream Selection", "Course Guidance", "Career Switch", "College Admission"];
-
-const BENEFITS = [
-  "1:1 attention from a certified career counsellor, not a call-center script",
-  "Personalized roadmap based on your interests, strengths & constraints",
-  "Honest advice — we recommend what fits you, not what pays us commission",
-  "Ongoing support until you're confident and enrolled in the right path",
-];
-
-const TESTIMONIALS = [
-  { name: "Aditya K.", role: "12th Student, Pune", text: "My counsellor actually listened before suggesting anything — felt like talking to a mentor." },
-  { name: "Sneha P.", role: "Working Professional", text: "EduGiggle helped me map out a realistic switch into data science with an actual plan." },
-  { name: "Karan M.", role: "BCom Graduate", text: "The free session alone gave me more clarity than months of googling." },
-];
-
 const NOTIFICATIONS = [
   { name: "Priya", city: "Delhi" },
   { name: "Rahul", city: "Mumbai" },
@@ -35,6 +46,8 @@ const NOTIFICATIONS = [
   { name: "Vikram", city: "Hyderabad" },
   { name: "Sneha", city: "Chennai" },
   { name: "Arjun", city: "Pune" },
+  { name: "Kavya", city: "Jaipur" },
+  { name: "Rohan", city: "Kolkata" },
 ];
 
 function useAnimatedCounter(end: number, duration: number = 2000) {
@@ -56,20 +69,21 @@ function useAnimatedCounter(end: number, duration: number = 2000) {
   return count;
 }
 
-function useTypingEffect() {
+function useTypingEffect(typingWords: string[]) {
   const [wordIdx, setWordIdx] = useState(0);
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentWord = TYPING_WORDS[wordIdx];
+    if (typingWords.length === 0) return;
+    const currentWord = typingWords[wordIdx % typingWords.length];
     let timeout: NodeJS.Timeout;
 
     if (!isDeleting && text === currentWord) {
       timeout = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && text === "") {
       setIsDeleting(false);
-      setWordIdx((prev) => (prev + 1) % TYPING_WORDS.length);
+      setWordIdx((prev) => (prev + 1) % typingWords.length);
     } else {
       const delta = isDeleting ? 40 : 80;
       timeout = setTimeout(() => {
@@ -77,24 +91,25 @@ function useTypingEffect() {
       }, delta);
     }
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, wordIdx]);
+  }, [text, isDeleting, wordIdx, typingWords]);
 
   return text;
 }
 
-export default function CounsellingHero({ courses }: { courses: Course[] }) {
-  const studentCount = useAnimatedCounter(1247, 2500);
+export default function HeroClient({ data }: { data: HeroData }) {
+  const studentCount = useAnimatedCounter(parseInt(data.studentCount, 10) || 0, 2500);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [notifIdx, setNotifIdx] = useState(0);
   const [notifVisible, setNotifVisible] = useState(true);
-  const typingText = useTypingEffect();
+  const typingText = useTypingEffect(data.typingWords);
 
   useEffect(() => {
+    if (data.testimonials.length === 0) return;
     const timer = setInterval(() => {
-      setTestimonialIdx((prev) => (prev + 1) % TESTIMONIALS.length);
+      setTestimonialIdx((prev) => (prev + 1) % data.testimonials.length);
     }, 3000);
     return () => clearInterval(timer);
-  }, []);
+  }, [data.testimonials.length]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -123,23 +138,23 @@ export default function CounsellingHero({ courses }: { courses: Course[] }) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="lg:grid lg:grid-cols-10 lg:gap-6 items-stretch">
-          {/* Left Column - Content */}
-          <div className="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1 mb-10 lg:mb-0">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+          {/* Left Column */}
+          <div className="lg:col-span-6 lg:pr-8 mb-12 lg:mb-0">
             {/* Animated Badge */}
-            <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-primary/10 text-xs sm:text-sm font-semibold text-secondary mb-6 shadow-sm w-fit">
+            <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-primary/10 text-xs sm:text-sm font-semibold text-secondary mb-8 shadow-sm hover:shadow-md transition-shadow cursor-default">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
               </span>
-              100% FREE · 1:1 EXPERT CAREER COUNSELLING
+              {data.badgeText}
             </div>
 
             {/* Enhanced Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-[3.2rem] font-extrabold text-secondary tracking-tight leading-[1.1] mb-3">
-              Get Career Clarity in{" "}
-              <span className="hero-headline-gradient relative">
-                One Free Session.
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-secondary tracking-tight leading-[1.1] mb-4">
+              {data.headlineLine1}{" "}
+              <span className="block hero-headline-gradient relative mt-2">
+                {data.headlineLine2}
                 <svg className="hero-underline absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 8 C50 2, 100 12, 150 6 S250 0, 298 8" stroke="#f26e22" strokeWidth="3" strokeLinecap="round" className="hero-underline-path" />
                 </svg>
@@ -147,20 +162,56 @@ export default function CounsellingHero({ courses }: { courses: Course[] }) {
             </h1>
 
             {/* Typing tagline */}
-            <div className="flex items-center gap-2 mb-5 h-7">
-              <span className="text-sm text-textMuted">We help with</span>
+            <div className="flex items-center gap-2 mb-6 h-8">
+              <span className="text-sm text-textMuted">We help you with</span>
               <span className="text-sm font-bold text-primary">
                 {typingText}
                 <span className="hero-typing-cursor">|</span>
               </span>
             </div>
 
-            <p className="text-base text-textMuted mb-6 leading-relaxed">
-              Talk to a real expert counsellor who maps out a plan built around you — not a sales pitch.
-            </p>
+            <p className="text-lg text-textMuted mb-8 max-w-xl leading-relaxed">{data.subheadline}</p>
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+              {data.features.map((feature, i) => (
+                <div
+                  key={feature.title}
+                  className={`hero-feature flex items-start gap-3 ${i === 2 ? "col-span-2 md:col-span-1" : ""}`}
+                >
+                  <div className="mt-1 bg-primary/5 p-2.5 rounded-xl text-primary group-hover:bg-primary/10 transition-colors">
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      {FEATURE_ICONS[i] ?? DEFAULT_ICON}
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm text-secondary">{feature.title}</h3>
+                    <p className="text-xs text-textMuted">{feature.subtitle}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <BookConsultButton className="hero-cta-primary group relative inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-2xl text-white bg-primary shadow-lg shadow-primary/25 transition-all text-center hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 overflow-hidden">
+                <span className="hero-shimmer absolute inset-0 pointer-events-none" />
+                <div className="text-left relative z-10">
+                  <span className="block">Book Free Consultation</span>
+                  <span className="block text-xs font-normal text-indigo-200 mt-0.5">Get 1:1 guidance with an expert</span>
+                </div>
+                <svg className="ml-2 h-5 w-5 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </BookConsultButton>
+              <Link className="hero-cta-secondary inline-flex items-center justify-center px-8 py-4 border border-gray-200 text-base font-bold rounded-2xl text-secondary bg-white hover:bg-gray-50 shadow-sm transition-all text-center hover:shadow-md hover:-translate-y-0.5" href="/courses">
+                <div className="text-left">
+                  <span className="block text-primary">Explore Courses</span>
+                  <span className="block text-xs font-normal text-textMuted mt-0.5">Find the right program</span>
+                </div>
+              </Link>
+            </div>
 
             {/* Live Counter */}
-            <div className="hero-live-counter flex items-center gap-3 mb-5 p-3 bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100 w-fit">
+            <div className="hero-live-counter flex items-center gap-3 mb-6 p-3 bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100 w-fit">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
@@ -171,7 +222,7 @@ export default function CounsellingHero({ courses }: { courses: Course[] }) {
             </div>
 
             {/* Social Proof + Rotating Testimonial */}
-            <div className="hero-social-proof flex flex-col gap-4">
+            <div className="hero-social-proof flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex items-center gap-3">
                 <div className="flex -space-x-2">
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-purple-500 border-2 border-white flex items-center justify-center text-white text-xs font-bold shadow-sm">A</div>
@@ -190,32 +241,34 @@ export default function CounsellingHero({ courses }: { courses: Course[] }) {
                 </div>
               </div>
               {/* Rotating mini testimonial */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl px-4 py-2.5 border border-gray-100 shadow-sm max-w-[280px]">
-                <div className="hero-testimonial-fade relative h-14 overflow-hidden">
-                  {TESTIMONIALS.map((t, i) => (
-                    <div
-                      key={i}
-                      className={`absolute inset-0 transition-all duration-500 ${i === testimonialIdx ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-                    >
-                      <p className="text-xs text-textMuted italic leading-relaxed">&ldquo;{t.text}&rdquo;</p>
-                      <p className="text-xs font-bold text-secondary mt-1">{t.name} <span className="font-normal text-textMuted">· {t.role}</span></p>
-                    </div>
-                  ))}
+              {data.testimonials.length > 0 && (
+                <div className="hidden sm:block bg-white/80 backdrop-blur-sm rounded-xl px-4 py-2.5 border border-gray-100 shadow-sm max-w-[240px]">
+                  <div className="hero-testimonial-fade relative h-14 overflow-hidden">
+                    {data.testimonials.map((t, i) => (
+                      <div
+                        key={i}
+                        className={`absolute inset-0 transition-all duration-500 ${i === testimonialIdx ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+                      >
+                        <p className="text-xs text-textMuted italic leading-relaxed">&ldquo;{t.text}&rdquo;</p>
+                        <p className="text-xs font-bold text-secondary mt-1">{t.name} <span className="font-normal text-textMuted">· {t.role}</span></p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
-          {/* Right Column - Form */}
-          <div className="lg:col-span-4 relative order-1 lg:order-2 mb-10 lg:mb-0">
-            {/* Floating annotation */}
+          {/* Right Column - Form Card */}
+          <div className="lg:col-span-6 relative lg:pl-8">
+            {/* Floating annotation - top of form */}
             <div className="hero-annotation flex justify-center mb-3 hidden sm:flex items-center gap-1.5 bg-accent/10 text-accent text-xs font-bold px-3 py-1.5 rounded-full border border-accent/20 w-fit mx-auto lg:mx-0 lg:ml-auto">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
               Takes less than 30 sec!
             </div>
 
             {/* Live notification badge */}
-            <div className={`hero-notification absolute -right-4 lg:-right-8 bottom-8 z-30 bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2 max-w-[200px] transition-all duration-300 ${notifVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-3"}`}>
+            <div className={`hero-notification absolute -left-4 lg:-left-8 bottom-8 z-30 bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2 max-w-[200px] transition-all duration-300 ${notifVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"}`}>
               <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                 <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
               </div>
@@ -226,19 +279,19 @@ export default function CounsellingHero({ courses }: { courses: Course[] }) {
             </div>
 
             {/* Glowing card wrapper */}
-            <div className="relative z-20 mx-auto lg:mr-0 lg:ml-0 max-w-md w-full">
+            <div className="hero-form-glow relative z-20 mx-auto lg:ml-auto lg:mr-0 max-w-md w-full">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-purple-400/20 to-primary/20 rounded-3xl blur-lg opacity-60 animate-pulse-slow pointer-events-none" />
               <div className="relative bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-xl">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-1.5 bg-primary/5 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                    100% Free Counselling
+                    100% Free Consultation
                   </div>
-                  <h2 className="text-2xl font-extrabold text-secondary mb-1">Book Your Free Session</h2>
-                  <p className="text-sm text-textMuted">Fill the form &amp; our expert will reach out</p>
+                  <h2 className="text-2xl font-extrabold text-secondary mb-1">Book Your Free Consultation</h2>
+                  <p className="text-sm text-textMuted">Fill the form &amp; our expert will call you</p>
                 </div>
-                <StepConsultForm id="counsellingHeroForm" courses={courses} />
-                <div className="mt-5 pt-4 border-t border-gray-100 flex items-center justify-center gap-4 text-xs text-gray-500 font-medium flex-wrap">
+                <ConsultForm id="heroConsultForm" />
+                <div className="mt-5 pt-4 border-t border-gray-100 flex items-center justify-center gap-4 text-xs text-gray-500 font-medium">
                   <span className="flex items-center gap-1.5">
                     <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                     100% Free
@@ -246,45 +299,19 @@ export default function CounsellingHero({ courses }: { courses: Course[] }) {
                   <span className="w-1 h-1 bg-gray-300 rounded-full" />
                   <span className="flex items-center gap-1.5">
                     <svg className="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    Reply in 24-48 hrs
+                    No Spam
                   </span>
                   <span className="w-1 h-1 bg-gray-300 rounded-full" />
                   <span className="flex items-center gap-1.5">
                     <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                    Confidential
+                    Quick Call
                   </span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Benefits Row */}
-        <div className="mt-16 lg:mt-20">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <ul className="space-y-3">
-                {BENEFITS.map((benefit) => (
-                  <li key={benefit} className="flex items-start gap-3 hero-feature">
-                    <svg className="h-5 w-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
-                    </svg>
-                    <span className="text-sm text-textMuted">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="hidden md:block">
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 shadow-sm flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-secondary">No commission-based recommendations</p>
-                  <p className="text-xs text-textMuted">We only suggest what&apos;s best for you</p>
-                </div>
-              </div>
-            </div>
+            {/* Background decorative elements */}
+            <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-purple-100/60 to-blue-50/60 rounded-full blur-3xl -z-10 pointer-events-none" />
           </div>
         </div>
       </div>

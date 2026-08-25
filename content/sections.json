@@ -1,0 +1,385 @@
+{
+  "home.hero": {
+    "badgeText": "INDIA'S TRUSTED EDUCATION & CAREER GUIDANCE PLATFORM",
+    "headlineLine1": "Confused About Your Career or Next Step?",
+    "headlineLine2": "Let's Make It Clear.",
+    "subheadline": "Personalized counselling for students & working professionals to choose the right path and the right course.",
+    "typingWords": [
+      "Career Planning",
+      "Course Selection",
+      "University Admission",
+      "Study Abroad"
+    ],
+    "features": [
+      {
+        "title": "Expert Counselors",
+        "subtitle": "10+ yrs experience"
+      },
+      {
+        "title": "Personalized Guidance",
+        "subtitle": "Tailored for you"
+      },
+      {
+        "title": "Trusted by 1,000+",
+        "subtitle": "Students & Professionals"
+      }
+    ],
+    "testimonials": [
+      {
+        "name": "Priya S.",
+        "role": "BBA Student",
+        "text": "EduGiggle helped me choose the right university!"
+      },
+      {
+        "name": "Rahul M.",
+        "role": "Working Professional",
+        "text": "Best career guidance I've ever received."
+      },
+      {
+        "name": "Ananya K.",
+        "role": "MBA Aspirant",
+        "text": "Finally clear about my career path."
+      }
+    ],
+    "studentCount": "1247"
+  },
+  "home.statsBar": {
+    "stats": [
+      {
+        "value": "1,000+",
+        "label": "Students Guided"
+      },
+      {
+        "value": "250+",
+        "label": "Expert Counselors"
+      },
+      {
+        "value": "50+",
+        "label": "University Partners"
+      }
+    ],
+    "ratingValue": "4.9/5",
+    "ratingLabel": "Average Rating"
+  },
+  "home.painPoints": {
+    "heading": "Why Thousands Trust EduGiggle",
+    "subheading": "We understand what's holding you back — and we help you move forward.",
+    "cards": [
+      {
+        "title": "Fear of Making the Wrong Choice?",
+        "description": "We help you choose with clarity & confidence."
+      },
+      {
+        "title": "Overwhelmed by Too Many Options?",
+        "description": "Our experts simplify choices for you."
+      },
+      {
+        "title": "Don't Want to Waste Time & Money?",
+        "description": "We recommend the right courses that truly matter."
+      },
+      {
+        "title": "Need Flexibility in Learning?",
+        "description": "Discover online programs that fit your life."
+      }
+    ]
+  },
+  "home.audienceSection": {
+    "heading": "We Help You, At Every Stage",
+    "audiences": [
+      {
+        "title": "Students",
+        "subtitle": "Class 10th, 12th, Graduates",
+        "points": [
+          "Confused about which stream or course to choose?",
+          "Not sure which college or university is right?",
+          "Need help with admissions and career planning?"
+        ]
+      },
+      {
+        "title": "Working Professionals",
+        "subtitle": "Employees, Entrepreneurs, Job Seekers",
+        "points": [
+          "Want to switch your career but unsure how?",
+          "Need to upskill for better growth or promotion?",
+          "Looking for flexible online degree programs?"
+        ]
+      }
+    ]
+  },
+  "home.placementSupport": {
+    "heading": "Launch Your Career with Our Placement Support",
+    "items": [
+      {
+        "title": "100% Placement Assistance",
+        "description": "End-to-end support to help you land your dream job."
+      },
+      {
+        "title": "Resume Building & Review",
+        "description": "Craft a standout resume with expert feedback."
+      },
+      {
+        "title": "Mock Interviews with Experts",
+        "description": "Practice with industry professionals and gain confidence."
+      },
+      {
+        "title": "Access to 500+ Hiring Partners",
+        "description": "Connect with top companies actively looking for talent."
+      }
+    ]
+  },
+  "home.counsellingProcess": {
+    "heading": "Our Proven Counselling Process",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Understand You",
+        "description": "We learn about your interests, strengths & goals."
+      },
+      {
+        "number": "02",
+        "title": "Assess & Analyze",
+        "description": "Our experts analyze and suggest the best-suited options."
+      },
+      {
+        "number": "03",
+        "title": "Create Your Roadmap",
+        "description": "Get a clear step-by-step plan for your future."
+      },
+      {
+        "number": "04",
+        "title": "Achieve Success",
+        "description": "We support you at every step until you reach your goals."
+      }
+    ]
+  },
+  "home.careerAssessment": {
+    "badgeText": "FREE CAREER CLARITY ASSESSMENT",
+    "heading": "Not Sure What's Right for You?",
+    "subheading": "Take our 2-min assessment and get:",
+    "benefits": [
+      "Your top career options",
+      "Recommended courses",
+      "Skills you should focus on",
+      "Personalized roadmap"
+    ],
+    "ctaLabel": "Take Free Assessment Now"
+  },
+  "home.webinars": {
+    "heading": "Upcoming Webinars & Events",
+    "events": [
+      {
+        "day": "24",
+        "month": "MAY",
+        "title": "How to Choose the Right Course After 12th",
+        "when": "Sat, 24 May | 4:00 PM"
+      },
+      {
+        "day": "27",
+        "month": "MAY",
+        "title": "Best Online Degrees for Working Professionals",
+        "when": "Tue, 27 May | 7:00 PM"
+      },
+      {
+        "day": "30",
+        "month": "MAY",
+        "title": "Career Opportunities in Data Science & AI",
+        "when": "Fri, 30 May | 6:00 PM"
+      },
+      {
+        "day": "02",
+        "month": "JUN",
+        "title": "Study in India vs Study Abroad",
+        "when": "Mon, 02 Jun | 5:00 PM"
+      }
+    ]
+  },
+  "home.recruiterPartners": {
+    "heading": "Our Recruiter Partners",
+    "subheading": "Top companies that hire from our talent pool",
+    "logos": [
+      {
+        "alt": "TCS logo",
+        "src": "/images/recruiters/tcs.png"
+      },
+      {
+        "alt": "Infosys logo",
+        "src": "/images/recruiters/infosys.png"
+      },
+      {
+        "alt": "Wipro logo",
+        "src": "/images/recruiters/wipro.png"
+      },
+      {
+        "alt": "HCL Technologies logo",
+        "src": "/images/recruiters/hcl.png"
+      },
+      {
+        "alt": "Tech Mahindra logo",
+        "src": "/images/recruiters/tech-mahindra.png"
+      },
+      {
+        "alt": "Reliance Industries logo",
+        "src": "/images/recruiters/reliance.png"
+      },
+      {
+        "alt": "HDFC Bank logo",
+        "src": "/images/recruiters/hdfc.png"
+      },
+      {
+        "alt": "ICICI Bank logo",
+        "src": "/images/recruiters/icici.png"
+      },
+      {
+        "alt": "Amazon logo",
+        "src": "/images/recruiters/amazon.png"
+      },
+      {
+        "alt": "Google logo",
+        "src": "/images/recruiters/google.png"
+      },
+      {
+        "alt": "Microsoft logo",
+        "src": "/images/recruiters/microsoft.png"
+      }
+    ]
+  },
+  "about.body": {
+    "heroTitle": "About EduGiggle",
+    "heroIntro": "We started EduGiggle to bring honest, human guidance to a system that too often leaves students and professionals confused, alone, and unsure of their next step.",
+    "founderName": "Saumya Dubey",
+    "founderTagline": "Founder, EduGiggle",
+    "founderParagraphs": [
+      "Saumya Dubey founded EduGiggle after seeing, time and again, how brilliant students and hardworking professionals were making life-altering education and career decisions with little more than guesswork, peer pressure, and unreliable information.",
+      "Having spent years navigating the world of counselling, admissions, and career transitions herself, Saumya understood how overwhelming the choices can feel — and how much clarity, confidence, and the right guidance can change a person's entire trajectory.",
+      "With over 6 years of experience working as a consultant, Saumya has personally guided more than 1000+ candidates — many of whom remain in touch with her to this day, now thriving in good companies.",
+      "Today, she leads EduGiggle with a simple belief: every student and professional deserves a mentor who genuinely listens, understands their story, and helps them choose a path they'll be proud of."
+    ],
+    "founderQuote": "I have seen too many students choose a stream or a college because their friends did, not because it was right for them.",
+    "founderQuoteBody": "I have seen working professionals stay stuck in careers that didn't fit, simply because no one ever sat down with them and asked the right questions. That's why I started EduGiggle — to be the guide I wish more people had access to. Not another admissions agent pushing a college, but a genuine counsellor invested in helping you find clarity, whether that's picking the right course, switching careers, or building the confidence to take the next step.",
+    "visionHeading": "Our Vision",
+    "visionIntro": "To become India's most trusted name in education and career guidance — a place where every decision starts with clarity, not confusion.",
+    "visionCards": [
+      {
+        "title": "Clarity Over Confusion",
+        "description": "Helping every student and professional make informed, confident choices about their future."
+      },
+      {
+        "title": "People-First Guidance",
+        "description": "Counselling built around your goals and story, not sales targets or commissions."
+      },
+      {
+        "title": "Lasting Impact",
+        "description": "Empowering thousands of ambitious minds to build careers they truly love."
+      }
+    ],
+    "ctaHeading": "Let's Find Clarity Together",
+    "ctaSubtext": "Book a free consultation and take the first step towards a future you're excited about."
+  },
+  "contact.body": {
+    "heroTitle": "Contact EduGiggle",
+    "heroIntro": "Have a question about counselling, courses, or admissions? Reach out and our team will get back to you shortly.",
+    "phone": "+91 81694 70610",
+    "email": "hello@edugiggle.com",
+    "location": "Navi Mumbai, India",
+    "sectionHeading": "We'd Love to Hear From You",
+    "sectionIntro": "Whether you're a student figuring out your next step or a working professional exploring a career change, our team is here to help."
+  },
+  "privacy.body": {
+    "title": "Privacy Policy",
+    "lastUpdated": "August 22, 2026",
+    "intro": "At EduGiggle, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard the data you share with us when you use our website and services.",
+    "sections": [
+      {
+        "title": "Information We Collect",
+        "content": "We collect information you provide directly to us, such as when you fill out a consultation form, register for an account, subscribe to our newsletter, or contact us. This may include your name, email address, phone number, educational background, career interests, and any other information you choose to provide."
+      },
+      {
+        "title": "How We Use Your Information",
+        "content": "We use the information we collect to provide, maintain, and improve our services; to personalise your experience and deliver content relevant to your career and education goals; to communicate with you about our services, events, and updates; to process transactions and send related information; and to comply with legal obligations."
+      },
+      {
+        "title": "Information Sharing",
+        "content": "We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties except as described in this policy. We may share your information with trusted university and education partners solely to facilitate admissions and counselling services you have requested. We may also share information when required by law or to protect our rights."
+      },
+      {
+        "title": "Data Security",
+        "content": "We implement a variety of security measures to maintain the safety of your personal information. Your personal data is stored in secured networks and is only accessible by a limited number of authorised personnel who are required to keep the information confidential. However, no method of transmission over the Internet or electronic storage is 100% secure."
+      },
+      {
+        "title": "Cookies",
+        "content": "We use cookies and similar tracking technologies to enhance your experience on our website. Cookies help us understand how you use our site, remember your preferences, and improve our services. You can choose to disable cookies through your browser settings, though this may affect certain functionality of the website."
+      },
+      {
+        "title": "Third-Party Links",
+        "content": "Our website may contain links to third-party websites or services that are not operated by us. We are not responsible for the privacy practices or content of these third-party sites. We encourage you to review the privacy policy of every site you visit."
+      },
+      {
+        "title": "Your Rights",
+        "content": "You have the right to access, correct, or delete your personal information at any time. You may also opt out of receiving marketing communications from us by following the unsubscribe link in our emails or by contacting us directly. If you wish to exercise any of these rights, please reach out to us at hello@edugiggle.com."
+      },
+      {
+        "title": "Children's Privacy",
+        "content": "Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If we become aware that we have collected personal information from a child, we will take steps to delete that information promptly."
+      },
+      {
+        "title": "Changes to This Policy",
+        "content": "We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the new policy on this page and updating the effective date."
+      },
+      {
+        "title": "Contact Us",
+        "content": "If you have any questions or concerns about this Privacy Policy, please contact us at hello@edugiggle.com or reach us at +91 81694 70610."
+      }
+    ]
+  },
+  "terms.body": {
+    "title": "Terms and Conditions",
+    "lastUpdated": "August 22, 2026",
+    "intro": "Welcome to EduGiggle. These Terms and Conditions outline the rules and regulations for using our website and services. By using our platform, you accept these terms in full.",
+    "sections": [
+      {
+        "title": "Acceptance of Terms",
+        "content": "By accessing or using the EduGiggle website and services, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our website or services. We reserve the right to modify these terms at any time, and continued use of our services constitutes acceptance of any changes."
+      },
+      {
+        "title": "Services Overview",
+        "content": "EduGiggle provides career counselling, education guidance, and admission consultation services. Our services include career assessments, personalised counselling sessions, university and course recommendations, and application assistance. The information provided on our website is for general informational and educational purposes only."
+      },
+      {
+        "title": "User Responsibilities",
+        "content": "You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to provide accurate, current, and complete information during registration and to update such information as necessary. You agree not to use our services for any unlawful or unauthorised purpose."
+      },
+      {
+        "title": "Consultation and Counselling",
+        "content": "EduGiggle provides counselling and guidance based on the information available at the time of consultation. Career and education recommendations are advisory in nature and should be considered alongside your own research and judgement. Admission outcomes depend on various factors including university policies, eligibility criteria, and competitive processes that are beyond our control."
+      },
+      {
+        "title": "Intellectual Property",
+        "content": "All content on this website, including text, graphics, logos, images, and software, is the property of EduGiggle or its content suppliers and is protected by Indian and international copyright laws. You may not reproduce, distribute, modify, or create derivative works from any content without our prior written consent."
+      },
+      {
+        "title": "Limitation of Liability",
+        "content": "EduGiggle shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of our services. We do not guarantee specific outcomes from our counselling or advisory services. Your use of our services is at your sole risk."
+      },
+      {
+        "title": "Payment and Refund Policy",
+        "content": "Fees for counselling and consultation services are communicated prior to engagement. Payment is required before services are rendered. Refund requests are evaluated on a case-by-case basis. Please contact us at hello@edugiggle.com for any payment or refund queries."
+      },
+      {
+        "title": "Termination",
+        "content": "We reserve the right to suspend or terminate your access to our services at our sole discretion, without notice, for conduct that we determine violates these terms or is harmful to other users, us, or third parties, or for any other reason."
+      },
+      {
+        "title": "Governing Law",
+        "content": "These Terms and Conditions are governed by and construed in accordance with the laws of India. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts located in Navi Mumbai, Maharashtra, India."
+      },
+      {
+        "title": "Changes to Terms",
+        "content": "We may update these Terms and Conditions from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated terms on this page."
+      },
+      {
+        "title": "Contact Us",
+        "content": "If you have any questions about these Terms and Conditions, please contact us at hello@edugiggle.com or call us at +91 81694 70610."
+      }
+    ]
+  }
+}

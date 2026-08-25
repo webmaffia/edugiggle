@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import Link from "next/link";
 import Image from "next/image";
 import { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID } from "@/lib/emailjs";
-import { COURSES } from "@/lib/courses";
+import type { Course } from "@/lib/courses";
 
 type Status = { message: string; isError: boolean } | null;
 
@@ -21,7 +21,15 @@ const INTEREST_AREAS: { key: string; label: string; ugSlug: string; pgSlug: stri
 
 const TOTAL_STEPS = 4;
 
-export default function StepConsultForm({ id, compact = false }: { id: string; compact?: boolean }) {
+export default function StepConsultForm({
+  id,
+  compact = false,
+  courses,
+}: {
+  id: string;
+  compact?: boolean;
+  courses: Course[];
+}) {
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<Status>(null);
@@ -42,9 +50,9 @@ export default function StepConsultForm({ id, compact = false }: { id: string; c
   const level: "UG" | "PG" | null = userType === "Working Professional" ? "PG" : userType === "Student (12th/UG)" ? "UG" : null;
   const interest = INTEREST_AREAS.find((a) => a.key === interestKey);
   const recommendedCourses = interest
-    ? COURSES.filter((c) => c.slug === (level === "PG" ? interest.pgSlug : interest.ugSlug))
+    ? courses.filter((c) => c.slug === (level === "PG" ? interest.pgSlug : interest.ugSlug))
     : level
-    ? COURSES.filter((c) => c.level === level)
+    ? courses.filter((c) => c.level === level)
     : [];
 
   function goNext() {
