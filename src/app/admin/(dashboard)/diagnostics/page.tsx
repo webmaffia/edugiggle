@@ -25,7 +25,7 @@ export default function DiagnosticsPage() {
       <div className="bg-white rounded-2xl border border-gray-100 divide-y divide-gray-100 max-w-xl">
         <Row label="Running on Vercel" value={String(isVercel)} />
         <Row label="Vercel environment" value={vercelEnv} />
-        <Row label="Image upload backend" value={hasBlobStore ? "Vercel Blob" : "Local filesystem"} ok={hasBlobStore || !isVercel} />
+        <Row label="Content & image storage backend" value={hasBlobStore ? "Vercel Blob" : "Local filesystem"} ok={hasBlobStore || !isVercel} />
         <Row label="BLOB_STORE_ID detected (OIDC)" value={String(hasStoreId)} ok={hasStoreId} />
         <Row label="BLOB_READ_WRITE_TOKEN detected (static)" value={String(hasStaticToken)} ok={hasStaticToken} />
       </div>

@@ -144,12 +144,17 @@ export default function AdminSectionForm({ fields, initialData, action }: Props)
     e.preventDefault();
     setSaving(true);
     setMessage(null);
-    const result = await action(data);
-    setSaving(false);
-    if (result.error) {
-      setMessage({ text: result.error, isError: true });
-    } else {
-      setMessage({ text: "Saved successfully.", isError: false });
+    try {
+      const result = await action(data);
+      if (result.error) {
+        setMessage({ text: result.error, isError: true });
+      } else {
+        setMessage({ text: "Saved successfully.", isError: false });
+      }
+    } catch {
+      setMessage({ text: "Save failed. Please try again.", isError: true });
+    } finally {
+      setSaving(false);
     }
   }
 

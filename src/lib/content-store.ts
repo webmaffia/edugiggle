@@ -1,9 +1,15 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { put, head } from "@vercel/blob";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
+const BLOB_PREFIX = "content";
 
-async function readJsonFile<T>(fileName: string, fallback: T): Promise<T> {
+function hasBlobStore() {
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
+}
+
+async function readLocalFile<T>(fileName: string, fallback: T): Promise<T> {
   try {
     const raw = await fs.readFile(path.join(CONTENT_DIR, fileName), "utf-8");
     return JSON.parse(raw) as T;
@@ -13,7 +19,33 @@ async function readJsonFile<T>(fileName: string, fallback: T): Promise<T> {
   }
 }
 
+async function readJsonFile<T>(fileName: string, fallback: T): Promise<T> {
+  if (hasBlobStore()) {
+    try {
+      const blob = await head(`${BLOB_PREFIX}/${fileName}`);
+      const res = await fetch(blob.url, { cache: "no-store" });
+      if (res.ok) return (await res.json()) as T;
+    } catch {
+      // Not written to Blob yet (e.g. first run after deploy) — fall back to the
+      // bundled seed file below. Writes from the admin panel go to Blob from then on.
+    }
+    return readLocalFile(fileName, fallback);
+  }
+
+  return readLocalFile(fileName, fallback);
+}
+
 async function writeJsonFile<T>(fileName: string, data: T): Promise<void> {
+  if (hasBlobStore()) {
+    await put(`${BLOB_PREFIX}/${fileName}`, JSON.stringify(data, null, 2), {
+      access: "public",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: "application/json",
+    });
+    return;
+  }
+
   await fs.mkdir(CONTENT_DIR, { recursive: true });
   await fs.writeFile(path.join(CONTENT_DIR, fileName), JSON.stringify(data, null, 2), "utf-8");
 }

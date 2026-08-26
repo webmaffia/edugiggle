@@ -25,13 +25,18 @@ export default function UniversityForm({ initialUniversity, isNew, onSave, onDel
     e.preventDefault();
     setSaving(true);
     setMessage(null);
-    const result = await onSave(university);
-    setSaving(false);
-    if (result.error) {
-      setMessage({ text: result.error, isError: true });
-    } else {
-      setMessage({ text: "Saved successfully.", isError: false });
-      if (isNew) router.push(`/admin/universities/${university.slug}`);
+    try {
+      const result = await onSave(university);
+      if (result.error) {
+        setMessage({ text: result.error, isError: true });
+      } else {
+        setMessage({ text: "Saved successfully.", isError: false });
+        if (isNew) router.push(`/admin/universities/${university.slug}`);
+      }
+    } catch {
+      setMessage({ text: "Save failed. Please try again.", isError: true });
+    } finally {
+      setSaving(false);
     }
   }
 
@@ -39,12 +44,17 @@ export default function UniversityForm({ initialUniversity, isNew, onSave, onDel
     if (!onDelete) return;
     if (!confirm(`Delete "${university.name}"? This cannot be undone.`)) return;
     setSaving(true);
-    const result = await onDelete();
-    setSaving(false);
-    if (result.error) {
-      setMessage({ text: result.error, isError: true });
-    } else {
-      router.push("/admin/universities");
+    try {
+      const result = await onDelete();
+      if (result.error) {
+        setMessage({ text: result.error, isError: true });
+      } else {
+        router.push("/admin/universities");
+      }
+    } catch {
+      setMessage({ text: "Delete failed. Please try again.", isError: true });
+    } finally {
+      setSaving(false);
     }
   }
 
