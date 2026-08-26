@@ -16,9 +16,14 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="space-y-10">
-      <div>
-        <h1 className="text-2xl font-extrabold text-secondary mb-1">Content Dashboard</h1>
-        <p className="text-textMuted text-sm">Manage everything shown on the public site.</p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-extrabold text-secondary mb-1">Content Dashboard</h1>
+          <p className="text-textMuted text-sm">Manage everything shown on the public site.</p>
+        </div>
+        <Link href="/admin/diagnostics" className="text-xs font-semibold text-textMuted hover:text-primary underline">
+          Diagnostics
+        </Link>
       </div>
 
       <div>
