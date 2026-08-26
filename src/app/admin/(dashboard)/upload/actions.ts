@@ -27,15 +27,14 @@ export async function uploadImageAction(formData: FormData): Promise<{ url?: str
 
   const fileName = `${Date.now()}-${crypto.randomBytes(6).toString("hex")}.${extension}`;
 
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
+  const hasBlobStore = Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
+  if (hasBlobStore) {
     try {
-      const blob = await put(`uploads/${fileName}`, file, {
-        access: "public",
-        token: process.env.BLOB_READ_WRITE_TOKEN,
-      });
+      const blob = await put(`uploads/${fileName}`, file, { access: "public" });
       return { url: blob.url };
-    } catch {
-      return { error: "Upload to cloud storage failed. Please try again." };
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Unknown error";
+      return { error: `Upload to cloud storage failed: ${message}` };
     }
   }
 
