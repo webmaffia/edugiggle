@@ -8,6 +8,8 @@ import CounsellingProcess from "@/components/home/CounsellingProcess";
 import FaqAccordion from "@/components/counselling/FaqAccordion";
 import { getCourses } from "@/lib/courses";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Free Career Counselling for Students & Professionals | EduGiggle",
   description:

@@ -3,6 +3,8 @@ import Image from "next/image";
 import BookConsultButton from "@/components/BookConsultButton";
 import { readSection } from "@/lib/content-store";
 
+export const dynamic = "force-dynamic";
+
 type AboutData = {
   heroTitle: string;
   heroIntro: string;

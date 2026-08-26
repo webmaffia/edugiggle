@@ -10,6 +10,8 @@ import CounsellingProcess from "@/components/home/CounsellingProcess";
 import CareerAssessment from "@/components/home/CareerAssessment";
 import Webinars from "@/components/home/Webinars";
 
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   return (
     <main>

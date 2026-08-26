@@ -4,12 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import BookConsultButton from "@/components/BookConsultButton";
 import ConsultForm from "@/components/ConsultForm";
-import { getCourses, getCourseBySlug, getUniversities } from "@/lib/courses";
+import { getCourseBySlug, getUniversities } from "@/lib/courses";
 
-export async function generateStaticParams() {
-  const courses = await getCourses();
-  return courses.map((course) => ({ slug: course.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

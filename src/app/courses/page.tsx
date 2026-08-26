@@ -4,6 +4,8 @@ import BookConsultButton from "@/components/BookConsultButton";
 import UniversityPartners from "@/components/home/UniversityPartners";
 import { getCourses, type Course } from "@/lib/courses";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Explore UG & PG Courses Across Top Universities | EduGiggle",
   description:

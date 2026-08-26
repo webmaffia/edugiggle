@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { readSection } from "@/lib/content-store";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Privacy Policy - EduGiggle",
   description:

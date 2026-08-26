@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import ConsultForm from "@/components/ConsultForm";
 import { readSection } from "@/lib/content-store";
 
+export const dynamic = "force-dynamic";
+
 type ContactData = {
   heroTitle: string;
   heroIntro: string;
