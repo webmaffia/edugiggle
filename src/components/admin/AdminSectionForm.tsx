@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { FieldSchema } from "@/lib/admin/sectionSchemas";
+import ImageUploadField from "./ImageUploadField";
 
 type Props = {
   fields: FieldSchema[];
@@ -24,7 +25,7 @@ function FieldInput({
   value: unknown;
   onChange: (value: unknown) => void;
 }) {
-  if (field.type === "text" || field.type === "image-url") {
+  if (field.type === "text") {
     return (
       <input
         type="text"
@@ -33,6 +34,10 @@ function FieldInput({
         className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
       />
     );
+  }
+
+  if (field.type === "image-url") {
+    return <ImageUploadField value={(value as string) ?? ""} onChange={onChange} />;
   }
 
   if (field.type === "textarea") {

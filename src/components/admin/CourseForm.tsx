@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Course, CourseOffering, University } from "@/lib/courses";
+import ImageUploadField from "./ImageUploadField";
 
 type Props = {
   initialCourse: Course;
@@ -110,8 +111,8 @@ export default function CourseForm({ initialCourse, universities, isNew, onSave,
           <input className={inputClass} value={course.tag} onChange={(e) => set("tag", e.target.value)} />
         </div>
         <div className="sm:col-span-2">
-          <label className={labelClass}>Image URL</label>
-          <input className={inputClass} value={course.image} onChange={(e) => set("image", e.target.value)} />
+          <label className={labelClass}>Course Image</label>
+          <ImageUploadField value={course.image} onChange={(url) => set("image", url)} />
         </div>
       </div>
 

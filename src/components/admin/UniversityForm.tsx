@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { University } from "@/lib/courses";
+import ImageUploadField from "./ImageUploadField";
 
 type Props = {
   initialUniversity: University;
@@ -68,12 +69,8 @@ export default function UniversityForm({ initialUniversity, isNew, onSave, onDel
         />
       </div>
       <div>
-        <label className={labelClass}>Logo URL</label>
-        <input
-          className={inputClass}
-          value={university.logo}
-          onChange={(e) => setUniversity((prev) => ({ ...prev, logo: e.target.value }))}
-        />
+        <label className={labelClass}>Logo</label>
+        <ImageUploadField value={university.logo} onChange={(url) => setUniversity((prev) => ({ ...prev, logo: url }))} />
       </div>
 
       {message && <p className={`text-sm font-medium ${message.isError ? "text-red-600" : "text-green-600"}`}>{message.text}</p>}
