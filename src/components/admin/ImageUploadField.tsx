@@ -20,17 +20,22 @@ export default function ImageUploadField({ value, onChange }: Props) {
     setUploading(true);
     setError(null);
 
-    const formData = new FormData();
-    formData.set("file", file);
-    const result = await uploadImageAction(formData);
+    try {
+      const formData = new FormData();
+      formData.set("file", file);
+      const result = await uploadImageAction(formData);
 
-    setUploading(false);
-    if (result.error) {
-      setError(result.error);
-    } else if (result.url) {
-      onChange(result.url);
+      if (result.error) {
+        setError(result.error);
+      } else if (result.url) {
+        onChange(result.url);
+      }
+    } catch {
+      setError("Upload failed. Please try again.");
+    } finally {
+      setUploading(false);
+      if (inputRef.current) inputRef.current.value = "";
     }
-    if (inputRef.current) inputRef.current.value = "";
   }
 
   return (
