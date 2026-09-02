@@ -69,18 +69,7 @@ const COUNSELLORS = [
     focus: "Has personally guided 1000+ students & professionals to career clarity.",
     image: "/about-us/founder-saumya-dubey.jpeg",
   },
-  {
-    name: "Rohan Verma",
-    role: "Career Transition Coach · 11+ yrs",
-    focus: "Helps working professionals plan confident career switches.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80",
-  },
-  {
-    name: "Ananya Iyer",
-    role: "Higher Education Counsellor · 8+ yrs",
-    focus: "Guides undergrads on specializations & online degree programs.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&h=400&q=80",
-  },
+
 ];
 
 const TESTIMONIALS = [
