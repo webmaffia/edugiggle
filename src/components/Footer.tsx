@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-secondary text-white pt-20 pb-10 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="lg:col-span-2">
             <p className="text-gray-400 max-w-sm leading-relaxed mb-8">
               Empowering ambitious minds with clear career guidance and premium education paths.
@@ -30,8 +30,6 @@ export default function Footer() {
             <ul className="space-y-4">
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/counselling">Counselling</Link></li>
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses">Courses</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Events &amp; Webinars</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Resources</Link></li>
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/about-us">About Us</Link></li>
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/contact-us">Contact Us</Link></li>
             </ul>
@@ -45,16 +43,6 @@ export default function Footer() {
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses/bca">BCA</Link></li>
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses/msc">Data Science (M.Sc)</Link></li>
               <li><Link className="text-gray-400 hover:text-white transition-colors" href="/courses">All Courses</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-bold mb-6">Resources</h3>
-            <ul className="space-y-4">
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Career Assessment</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Study Abroad Guide</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">Blogs</Link></li>
-              <li><Link className="text-gray-400 hover:text-white transition-colors" href="/#">FAQs</Link></li>
             </ul>
           </div>
         </div>

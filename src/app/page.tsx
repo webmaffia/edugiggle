@@ -8,7 +8,6 @@ import PlacementSupport from "@/components/home/PlacementSupport";
 import RecruiterPartners from "@/components/home/RecruiterPartners";
 import CounsellingProcess from "@/components/home/CounsellingProcess";
 import CareerAssessment from "@/components/home/CareerAssessment";
-import Webinars from "@/components/home/Webinars";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +24,6 @@ export default function HomePage() {
       <RecruiterPartners />
       <CounsellingProcess />
       <CareerAssessment />
-      <Webinars />
     </main>
   );
 }
