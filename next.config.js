@@ -22,6 +22,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/about.html",
+        destination: "/about-us",
+        permanent: true,
+      },
+      {
+        source: "/courses.html",
+        destination: "/courses",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
