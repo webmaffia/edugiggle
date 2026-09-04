@@ -56,7 +56,16 @@ export default function ResumeQuickUpload() {
 
     const resumeData = new FormData();
     resumeData.set("file", resumeFile);
-    const result = await uploadResumeAction(resumeData);
+
+    let result: { url?: string; fileName?: string; error?: string };
+    try {
+      result = await uploadResumeAction(resumeData);
+    } catch (error) {
+      console.error("Resume upload error:", error);
+      setResumeError("Resume upload failed. Please try again.");
+      setSubmitting(false);
+      return;
+    }
     if (result.error) {
       setResumeError(result.error);
       setSubmitting(false);
