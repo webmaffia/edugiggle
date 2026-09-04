@@ -6,6 +6,7 @@ import StatsBar from "@/components/home/StatsBar";
 import CounsellingProcess from "@/components/home/CounsellingProcess";
 import PlacementSupport from "@/components/home/PlacementSupport";
 import RecruiterPartners from "@/components/home/RecruiterPartners";
+import ResumeQuickUpload from "@/components/placement/ResumeQuickUpload";
 import { getCourses } from "@/lib/courses";
 
 export const dynamic = "force-dynamic";
@@ -89,21 +90,26 @@ export default async function PlacementPage() {
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-indigo-100 mb-6">
-            PLACEMENT SUPPORT
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-indigo-100 mb-6">
+                PLACEMENT SUPPORT
+              </div>
+              <h1 className="text-4xl md:text-5xl font-extrabold max-w-3xl mb-6 leading-tight">
+                From Classroom to Career — Powered by <span className="text-accent">JobGiggle</span>
+              </h1>
+              <p className="text-indigo-100 max-w-2xl text-lg leading-relaxed mb-8">
+                Every EduGiggle student gets end-to-end placement support through{" "}
+                <strong className="text-accent">JobGiggle</strong>, our dedicated placement partner — resume building,
+                mock interviews, and direct access to 500+ recruiters actively hiring.
+              </p>
+              <BookConsultButton className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-xl text-white bg-primary hover:bg-opacity-90 shadow-lg shadow-indigo-900/40 transition-all">
+                Talk to a Placement Counsellor
+                <svg className="h-4 w-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
+              </BookConsultButton>
+            </div>
+            <ResumeQuickUpload />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold max-w-3xl mb-6 leading-tight">
-            From Classroom to Career — Powered by <span className="text-accent">JobGiggle</span>
-          </h1>
-          <p className="text-indigo-100 max-w-2xl text-lg leading-relaxed mb-8">
-            Every EduGiggle student gets end-to-end placement support through{" "}
-            <strong className="text-accent">JobGiggle</strong>, our dedicated placement partner — resume building,
-            mock interviews, and direct access to 500+ recruiters actively hiring.
-          </p>
-          <BookConsultButton className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-xl text-white bg-primary hover:bg-opacity-90 shadow-lg shadow-indigo-900/40 transition-all">
-            Talk to a Placement Counsellor
-            <svg className="h-4 w-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-          </BookConsultButton>
         </div>
       </section>
 
