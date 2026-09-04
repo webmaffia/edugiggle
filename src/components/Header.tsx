@@ -8,6 +8,7 @@ import BookConsultButton from "./BookConsultButton";
 const NAV_LINKS = [
   { label: "Counselling", href: "/counselling" },
   { label: "Courses", href: "/courses" },
+  { label: "Placement", href: "/placement", badge: "New" },
   { label: "About Us", href: "/about-us" },
 ];
 
@@ -26,10 +27,15 @@ export default function Header() {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
-                className="text-secondary font-semibold hover:text-primary transition-colors"
+                className="relative text-secondary font-semibold hover:text-primary transition-colors"
                 href={link.href}
               >
                 {link.label}
+                {link.badge && (
+                  <span className="absolute -top-3 -right-4 px-1.5 py-0.5 rounded-full bg-accent text-white text-[10px] font-bold leading-none animate-blink">
+                    {link.badge}
+                  </span>
+                )}
               </Link>
             ))}
           </nav>
@@ -70,11 +76,16 @@ export default function Header() {
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
-              className="text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors"
+              className="flex items-center gap-2 text-secondary font-semibold hover:text-primary hover:bg-surface rounded-lg px-3 py-2.5 transition-colors"
               href={link.href}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
+              {link.badge && (
+                <span className="px-1.5 py-0.5 rounded-full bg-accent text-white text-[10px] font-bold leading-none animate-blink">
+                  {link.badge}
+                </span>
+              )}
             </Link>
           ))}
           <Link
