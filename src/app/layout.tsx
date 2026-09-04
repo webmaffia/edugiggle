@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { ConsultationModalProvider } from "@/lib/consultation-context";
 import Header from "@/components/Header";
@@ -48,6 +49,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={montserrat.variable}>
       <body className="bg-white pb-20 md:pb-0 font-sans">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MTZS8SDME2"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-MTZS8SDME2');
+          `}
+        </Script>
         <ConsultationModalProvider>
           <Header />
           {children}
