@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID } from "@/lib/emailjs";
-import { uploadResumeAction } from "@/app/placement/actions";
 
 const RESUME_MAX_SIZE_BYTES = 5 * 1024 * 1024;
 const RESUME_ALLOWED_TYPES = [
@@ -15,6 +14,7 @@ const RESUME_ALLOWED_TYPES = [
 type Status = { message: string; isError: boolean } | null;
 
 export default function ResumeQuickUpload() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -51,32 +51,19 @@ export default function ResumeQuickUpload() {
       setResumeError("Please attach your resume.");
       return;
     }
+    if (!formRef.current) return;
+
     setSubmitting(true);
     setResumeError(null);
 
-    const resumeData = new FormData();
-    resumeData.set("file", resumeFile);
-    const result = await uploadResumeAction(resumeData);
-    if (result.error) {
-      setResumeError(result.error);
-      setSubmitting(false);
-      return;
-    }
-
-    const params = {
-      to_email: "giggle.leads@gmail.com",
-      name,
-      email,
-      title: `New Resume Submission from ${name}`,
-      time: new Date().toLocaleString(),
-      message:
-        `Email: ${email}\n` +
-        `WhatsApp Number: ${phone}\n` +
-        `Resume: ${result.url} (${result.fileName})`,
-    };
+    const elements = formRef.current.elements;
+    (elements.namedItem("title") as HTMLInputElement).value = `New Resume Submission from ${name}`;
+    (elements.namedItem("time") as HTMLInputElement).value = new Date().toLocaleString();
+    (elements.namedItem("message") as HTMLInputElement).value =
+      `Email: ${email}\nWhatsApp Number: ${phone}\nResume attached: ${resumeFile.name}`;
 
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params, {
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, {
         publicKey: EMAILJS_PUBLIC_KEY,
       });
       setStatus({ message: "Resume received! Our placement team will reach out shortly.", isError: false });
@@ -103,13 +90,19 @@ export default function ResumeQuickUpload() {
   }
 
   return (
-    <form className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 text-left" onSubmit={handleSubmit}>
+    <form ref={formRef} className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 text-left" onSubmit={handleSubmit}>
       <p className="text-xs font-bold tracking-widest text-primary mb-1">QUICK APPLY</p>
       <h3 className="text-xl font-extrabold text-secondary mb-5">Upload Your Resume</h3>
+
+      <input type="hidden" name="to_email" value="giggle.leads@gmail.com" />
+      <input type="hidden" name="title" />
+      <input type="hidden" name="time" />
+      <input type="hidden" name="message" />
 
       <div className="space-y-3.5">
         <input
           className="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white text-gray-900 placeholder-gray-400 transition-colors"
+          name="name"
           placeholder="Full Name"
           required
           type="text"
@@ -118,6 +111,7 @@ export default function ResumeQuickUpload() {
         />
         <input
           className="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm p-3 bg-gray-50 focus:bg-white text-gray-900 placeholder-gray-400 transition-colors"
+          name="email"
           placeholder="Email Address"
           required
           type="email"
@@ -143,7 +137,7 @@ export default function ResumeQuickUpload() {
           <span className="text-sm text-gray-600 truncate">
             {resumeFile ? resumeFile.name : "Attach resume — PDF, DOC or DOCX (max 5MB)"}
           </span>
-          <input accept=".pdf,.doc,.docx" className="hidden" onChange={handleResumeChange} type="file" />
+          <input accept=".pdf,.doc,.docx" className="hidden" name="resume" onChange={handleResumeChange} type="file" />
         </label>
         {resumeError && <p className="text-xs font-medium text-red-600">{resumeError}</p>}
         {status && status.isError && <p className="text-xs font-medium text-red-600">{status.message}</p>}
@@ -153,7 +147,7 @@ export default function ResumeQuickUpload() {
           type="submit"
           disabled={submitting}
         >
-          {submitting ? "Uploading..." : "Submit Resume"}
+          {submitting ? "Sending..." : "Submit Resume"}
         </button>
       </div>
     </form>
