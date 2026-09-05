@@ -160,7 +160,7 @@ export default function ResumeQuickUpload() {
           <svg className="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
           </svg>
-          <span className="text-sm text-gray-600 truncate">
+          <span className="text-sm text-gray-600 truncate min-w-0 flex-1">
             {resumeFile ? resumeFile.name : "Attach resume — PDF, DOC or DOCX (max 5MB)"}
           </span>
           <input accept=".pdf,.doc,.docx" className="hidden" onChange={handleResumeChange} type="file" />

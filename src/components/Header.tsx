@@ -23,7 +23,7 @@ export default function Header() {
             <Image alt="EduGiggle Logo" className="h-12 w-auto object-contain" src="/logo.jpeg" width={160} height={48} priority />
           </Link>
 
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden lg:flex space-x-8">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -40,7 +40,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <Link className="text-secondary font-semibold hover:text-primary transition-colors" href="/contact-us">
               Contact Us
             </Link>
@@ -52,7 +52,7 @@ export default function Header() {
             </BookConsultButton>
           </div>
 
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               aria-controls="mobileMenu"
               aria-expanded={menuOpen}
@@ -71,7 +71,7 @@ export default function Header() {
         </div>
       </div>
 
-      <div className={`md:hidden ${menuOpen ? "" : "hidden"} border-t border-gray-100 bg-white`} id="mobileMenu">
+      <div className={`lg:hidden ${menuOpen ? "" : "hidden"} border-t border-gray-100 bg-white`} id="mobileMenu">
         <nav className="flex flex-col px-4 sm:px-6 py-4 space-y-1">
           {NAV_LINKS.map((link) => (
             <Link
